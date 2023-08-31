@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import preact from "@astrojs/preact";
-import vercel from "@astrojs/vercel/serverless";
 
 import sitemap from "@astrojs/sitemap";
 
@@ -9,6 +8,5 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://finger-patterns.rickhenry.studio",
   integrations: [tailwind(), preact(), sitemap()],
-  output: "hybrid",
-  adapter: vercel()
+  output: "static",
 });
