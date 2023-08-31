@@ -5,8 +5,8 @@ A web app for helping violin students learn their finger patterns.
 
 ## Basic Capabilities
 
-[ ] Outputs all first position finger patterns for a given key as name and chart
-        [ ] shows scale for key
+[x] Outputs all first position finger patterns for a given key as name and chart
+        [x] shows scale for key
         [ ] shows exercise for practicing finger patterns (sevcik/schradiek)
 [ ] Outputs finger patterns for a set of notes on a string (validates note set)
         [ ] all basic finger patterns

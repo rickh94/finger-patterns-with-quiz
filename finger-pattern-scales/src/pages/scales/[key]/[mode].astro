@@ -2,6 +2,8 @@
 import NotesDisplay from '../../../components/NotesDisplay.tsx';
 import FingerDisplay from '../../../components/FingerDisplay.tsx';
 import Layout from '../../../layouts/Layout.astro';
+import ScalePicker from '../../../components/ScalePicker';
+import NavButton from '../../../components/NavButton';
 import scales from '../../../scales';
 
 export function getStaticPaths() { 
@@ -18,11 +20,11 @@ if (!thisScale || !thisScale.notes || !thisScale.key) {
 <Layout title={thisScale.name}>
   <div class="container mx-auto px-2 font-serif">
     <header class="mt-8 mb-4 w-full flex justify-center">
-      <h1
+      <NavButton client:load
         class="text-xl sm:text-3xl font-bold border-b-2 pb-1 px-2 border-fuchsia-600"
       >
         {thisScale.name}
-      </h1>
+      </NavButton>
     </header>
     <div class="flex flex-col max-w-4xl mx-auto">
       <p class="italic mb-4">This shows all the finger patterns for all the strings and the notes of the {thisScale.name} scale. 
@@ -47,4 +49,5 @@ if (!thisScale || !thisScale.notes || !thisScale.key) {
   <div class="absolute top-0 left-0 m-4">
     <a href="/" class="border-b-2 border-fuchsia-600">Back Home</a>
   </div>
+  <ScalePicker client:idle />
 </Layout>
