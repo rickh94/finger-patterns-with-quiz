@@ -31,7 +31,7 @@ if (!thisScale || !thisScale.notes || !thisScale.key) {
         If clicking on a finger doesn't highlight a note, it's either an open G or not in the scale.
       </p>
       <div class="flex w-full justify-center">
-        <NotesDisplay client:load notes={thisScale.notes} offset={thisScale.offset} />
+        <NotesDisplay client:load baseId="scaleup"notes={thisScale.notes} offset={thisScale.offset} />
       </div>
       <div class="mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
         {thisScale.patterns.map((pattern) => (

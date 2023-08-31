@@ -4,13 +4,18 @@ import ABCJS, { type AbcElem } from "abcjs";
 import { useEffect, useId } from "preact/hooks";
 
 type NotesDisplayProps = {
+  baseId: string;
   notes: string;
   offset: number;
 };
 
-export default function NotesDisplay({ notes, offset }: NotesDisplayProps) {
+export default function NotesDisplay({
+  baseId,
+  notes,
+  offset,
+}: NotesDisplayProps) {
   const $activeFinger = useStore(activeFinger);
-  const notesId = useId();
+  const notesId = baseId + "notes";
 
   function onNoteClick(abcElem: AbcElem) {
     for (let el of abcElem.abselem.elemset) {
@@ -49,7 +54,6 @@ export default function NotesDisplay({ notes, offset }: NotesDisplayProps) {
   }, [notes]);
 
   useEffect(() => {
-    console.log("active finger changed");
     if (!$activeFinger.num || !$activeFinger.baseId) {
       return;
     }
@@ -65,5 +69,5 @@ export default function NotesDisplay({ notes, offset }: NotesDisplayProps) {
       ?.classList.add("abcjs-note_selected");
   }, [$activeFinger]);
 
-  return <div className="notes -pl-2" id={notesId}></div>;
+  return <div className="h-[100px] notes -pl-2" id={notesId}></div>;
 }
