@@ -1,0 +1,45 @@
+---
+import NotesDisplay from '../../../components/NotesDisplay.astro';
+import FingerDisplay from '../../../components/FingerDisplay.astro';
+import Layout from '../../../layouts/Layout.astro';
+import scales from '../../../scales';
+
+export function getStaticPaths() { 
+  return scales.map((scale) => ({ params: { key: scale.key, mode: scale.mode } }));
+}
+
+const { mode, key } = Astro.params;
+const thisScale = scales.find((scale) => scale.key === key && scale.mode === mode);
+if (!thisScale || !thisScale.notes || !thisScale.key) {
+  return Astro.redirect('/404');
+}
+---
+<script src="../../../activeFinger.js"></script>
+
+<Layout title={thisScale.name}>
+  <div class="container mx-auto px-2 font-serif">
+    <header class="my-8 w-full flex justify-center">
+      <h1
+        class="text-xl sm:text-3xl font-bold border-b-2 pb-1 px-2 border-fuchsia-600"
+      >
+        {thisScale.name}
+      </h1>
+    </header>
+    <div class="flex flex-col max-w-4xl mx-auto">
+      <div class="flex w-full justify-center">
+        <NotesDisplay joinedId={thisScale.key} notes={thisScale.notes} offset={thisScale.offset} />
+      </div>
+      <div class="mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+      {thisScale.patterns.map((pattern) => (
+        <div class="flex flex-col justify-center">
+          <div>
+            <h2 class="text-xl">{pattern.violinString} String — <em class="italic">{pattern.pattern.name}</em></h2>
+          </div>
+          <FingerDisplay joinedId={pattern.id} radius={2} widths={pattern.pattern.widths} />
+        </div>
+      ))}
+      </div>
+    </div>
+  </div>
+
+</Layout>
