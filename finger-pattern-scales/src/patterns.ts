@@ -1,6 +1,7 @@
+export type PatternWidth = 4 | 16 | 20;
 export type Pattern = {
   name: string;
-  widths: number[];
+  widths: [PatternWidth, PatternWidth, PatternWidth, PatternWidth];
 };
 
 type PatternList = {
