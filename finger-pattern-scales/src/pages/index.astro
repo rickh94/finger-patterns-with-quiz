@@ -4,6 +4,8 @@ import FingerDisplay from '../components/FingerDisplay.tsx';
 import ScalePicker from '../components/ScalePicker.tsx';
 import NavButton from '../components/NavButton.tsx';
 import patterns from '../patterns';
+
+// TODO: fix layout of nav elements on all pages
 ---
 <Layout title="Violin Finger Patterns and Scales">
   <ScalePicker client:idle />
@@ -17,9 +19,9 @@ import patterns from '../patterns';
     </header>
     <div class="max-w-4xl mx-auto"> 
       <p class="italic mb-4">Here are the five basic finger patterns on the violin. 
-        <NavButton client:load className="border-b-2 border-fuchsia-600">Pick a Scale</NavButton> to see how they work in action. 
+        <NavButton client:load className="border-b-2 border-fuchsia-600 hover:text-fuchsia-800">Pick a Scale</NavButton> to see how they work in action. 
       </p>
-      <div class="grid grid-cols-2 gap-2 mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mx-auto">
         {Object.keys(patterns.normal).map((key) => (
           <div class="my-2">
             <h2 class="text-xl tracking-wide">{patterns.normal[key].name}</h2>
@@ -29,8 +31,13 @@ import patterns from '../patterns';
       </div>
     </div>
   </div>
-  <div class="absolute top-0 right-0 m-4">
-    <NavButton client:load className="border-b-2 border-fuchsia-600">Scales</NavButton>
+  <div class="absolute top-0 right-0 m-4 flex flex-col gap-y-1 items-end">
+    <div class="flex justify-end">
+      <NavButton client:load className="border-b-2 border-fuchsia-600 pb-0 hover:text-fuchsia-800">Scales</NavButton>
+    </div>
+    <div>
+      <a href="/quiz" class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800">Test Your Knowledge</a>
+    </div>
   </div>
 
 </Layout>

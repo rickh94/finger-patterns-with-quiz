@@ -69,5 +69,7 @@ export default function NotesDisplay({
       ?.classList.add("abcjs-note_selected");
   }, [$activeFinger]);
 
-  return <div className="h-[100px] notes -pl-2" id={notesId}></div>;
+  return (
+    <div className="overflow-x-scroll h-[100px] notes -pl-2" id={notesId}></div>
+  );
 }
