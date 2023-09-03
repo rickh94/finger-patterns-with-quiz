@@ -13,67 +13,67 @@ type PatternList = {
 const patterns: PatternList = {
   low: {
     oneTwo: {
-      name: "1-2 Pattern",
+      name: '1-2 Pattern',
       widths: [4, 4, 16, 16],
     },
     twoThree: {
-      name: "2-3 Pattern",
+      name: '2-3 Pattern',
       widths: [4, 16, 4, 16],
     },
     threeFour: {
-      name: "3-4 Pattern",
+      name: '3-4 Pattern',
       widths: [4, 16, 16, 4],
     },
     wholeSteps: {
-      name: "Whole Steps Pattern",
+      name: 'Whole Steps Pattern',
       widths: [4, 16, 16, 16],
     },
     halfSteps: {
-      name: "Half Steps Pattern",
+      name: 'Half Steps Pattern',
       widths: [4, 4, 20, 4],
     },
   },
   normal: {
     oneTwo: {
-      name: "1-2 Pattern",
+      name: '1-2 Pattern',
       widths: [16, 4, 16, 16],
     },
     twoThree: {
-      name: "2-3 Pattern",
+      name: '2-3 Pattern',
       widths: [16, 16, 4, 16],
     },
     threeFour: {
-      name: "3-4 Pattern",
+      name: '3-4 Pattern',
       widths: [16, 16, 16, 4],
     },
     wholeSteps: {
-      name: "Whole Steps Pattern",
+      name: 'Whole Steps Pattern',
       widths: [16, 16, 16, 16],
     },
     halfSteps: {
-      name: "Half Steps Pattern",
+      name: 'Half Steps Pattern',
       widths: [16, 4, 20, 4],
     },
   },
   high: {
     oneTwo: {
-      name: "1-2 Pattern",
+      name: '1-2 Pattern',
       widths: [20, 4, 16, 16],
     },
     twoThree: {
-      name: "2-3 Pattern",
+      name: '2-3 Pattern',
       widths: [20, 16, 4, 16],
     },
     threeFour: {
-      name: "3-4 Pattern",
+      name: '3-4 Pattern',
       widths: [20, 16, 16, 4],
     },
     wholeSteps: {
-      name: "Whole Steps Pattern",
+      name: 'Whole Steps Pattern',
       widths: [20, 16, 16, 16],
     },
     halfSteps: {
-      name: "Half Steps Pattern",
+      name: 'Half Steps Pattern',
       widths: [20, 4, 20, 4],
     },
   },

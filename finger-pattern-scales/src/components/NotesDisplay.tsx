@@ -1,25 +1,30 @@
-import { useStore } from "@nanostores/preact";
-import { activeFinger } from "../stores.ts";
-import ABCJS, { type AbcElem } from "abcjs";
-import { useEffect, useId } from "preact/hooks";
+import { useStore } from '@nanostores/preact';
+import { activeFinger } from '../stores.ts';
+import ABCJS, { type AbcElem } from 'abcjs';
+import { useEffect, useId } from 'preact/hooks';
 
 type NotesDisplayProps = {
   baseId: string;
   notes: string;
   offset: number;
+  disabled?: boolean;
 };
 
 export default function NotesDisplay({
   baseId,
   notes,
   offset,
+  disabled = false,
 }: NotesDisplayProps) {
   const $activeFinger = useStore(activeFinger);
-  const notesId = baseId + "notes";
+  const notesId = baseId + 'notes';
 
   function onNoteClick(abcElem: AbcElem) {
+    if (disabled) {
+      return;
+    }
     for (let el of abcElem.abselem.elemset) {
-      if (!el.classList.contains("abcjs-note")) {
+      if (!el.classList.contains('abcjs-note')) {
         return;
       }
       const regex = /abcjs-n(\d+)/;
@@ -62,14 +67,14 @@ export default function NotesDisplay({
     document
       .querySelectorAll(`#${notesId} .abcjs-note_selected`)
       ?.forEach((el: any) => {
-        el.classList.remove("abcjs-note_selected");
+        el.classList.remove('abcjs-note_selected');
       });
     document
       .querySelector(`#${notesId} .abcjs-n${noteNumber}`)
-      ?.classList.add("abcjs-note_selected");
+      ?.classList.add('abcjs-note_selected');
   }, [$activeFinger]);
 
   return (
-    <div className="overflow-x-scroll h-[100px] notes -pl-2" id={notesId}></div>
+    <div className="notes -pl-2 h-[100px] overflow-x-scroll" id={notesId}></div>
   );
 }

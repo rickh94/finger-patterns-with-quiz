@@ -12,15 +12,17 @@ import Layout from '../../layouts/Layout.astro';
         Choose a Scale
       </h1>
     </header>
-    <div class="max-w-4xl mx-auto grid grid-cols-2 gap-y-6 text-center mt-8"> 
-      {scales.map((scale) => (
-        <a
-          href={`/scales/${scale.key}/${scale.mode}`}
-          class="underline text-fuchsia-800 hover:text-fuchsia-600"
-        >
-          {scale.name}
-        </a>
-      ))}
+    <div class="max-w-4xl mx-auto grid grid-cols-2 gap-y-6 text-center mt-8">
+      {
+        scales.map((scale) => (
+          <a
+            href={`/scales/${scale.key}/${scale.mode}`}
+            class="underline text-fuchsia-800 hover:text-fuchsia-600"
+          >
+            {scale.name}
+          </a>
+        ))
+      }
     </div>
   </div>
   <div class="absolute top-0 left-0 m-4">

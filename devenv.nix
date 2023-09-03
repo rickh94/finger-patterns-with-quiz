@@ -2,7 +2,7 @@
 
 {
   # https://devenv.sh/packages/
-  packages = [ pkgs.git pkgs.bun ];
+  packages = [ pkgs.git pkgs.nodejs pkgs.nodePackages.prettier ];
 
   languages.javascript.enable = true;
   languages.typescript.enable = true;
@@ -18,4 +18,5 @@
   # processes.ping.exec = "ping example.com";
 
   # See full reference at https://devenv.sh/reference/options/
+  scripts.format.exec = "prettier --write . --plugin=prettier-plugin-tailwindcss --plugin=prettier-plugin-astro";
 }

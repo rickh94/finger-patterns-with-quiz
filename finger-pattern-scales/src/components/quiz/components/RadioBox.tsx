@@ -1,57 +1,60 @@
+import { RadioGroup } from '@headlessui/react';
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
-
-type ListCheckBoxProps = {
-  isChecked: boolean;
-  setIsChecked: (isChecked: boolean) => void;
-  text: string;
+type RadioBoxProps = {
   key: string;
+  value: any;
+  text: string;
+  name: string;
+  checked: boolean;
+  setChecked: () => void;
 };
 
-export default function ListCheckBox({
-  isChecked,
-  setIsChecked,
-  text,
+export default function RadioBox({
   key,
-}: ListCheckBoxProps) {
+  value,
+  text,
+  name,
+  checked,
+  setChecked,
+}: RadioBoxProps) {
   return (
     <label
       htmlFor={key}
       className={
         'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none' +
-        (isChecked
+        (checked
           ? ' border-fuchsia-700 ring-2 ring-fuchsia-700'
           : ' border-gray-300')
       }
     >
       <input
+        type="radio"
+        name={name}
         id={key}
-        type="checkbox"
-        name="strings"
+        value={value}
         class="sr-only"
+        checked={checked}
+        onChange={(e) => e.currentTarget.checked && setChecked()}
         aria-labelledby={key + '-label'}
-        checked={isChecked}
-        onChange={(e) => setIsChecked(e.currentTarget.checked)}
       />
-      <span class="flex flex-1">
-        <span class="flex flex-col">
+      <span className="flex flex-1">
+        <span className="flex-col">
           <span
-            id={key + '-label'}
             className="block text-sm font-medium text-gray-900"
+            id={key + '-label'}
           >
             {text}
           </span>
         </span>
       </span>
       <CheckCircleIcon
-        className={'h-5 w-5 text-fuchsia-700' + (isChecked ? '' : ' invisible')}
+        className={'h-5 w-5 text-fuchsia-700' + (checked ? '' : ' invisible')}
         aria-hidden="true"
       />
       <span
         className={
           'pointer-events-none absolute -inset-px rounded-lg border-2' +
-          isChecked
-            ? ' border-fuchsia-700'
-            : ' border-gray-300'
+          (checked ? ' border-fuchsia-700' : ' border-gray-300')
         }
         aria-hidden="true"
       ></span>

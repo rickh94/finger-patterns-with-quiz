@@ -1,4 +1,4 @@
-import { map, atom } from "nanostores";
+import { map, atom } from 'nanostores';
 
 export interface ActiveFingerValue {
   baseId: string | null;
