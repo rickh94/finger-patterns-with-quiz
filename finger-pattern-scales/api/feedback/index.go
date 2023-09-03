@@ -63,14 +63,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	client := openai.NewClient(apiKey)
 
-	percentage := quizResults.Correct / (quizResults.Correct + quizResults.Incorrect) * 100
+	percentage := (quizResults.Correct / (quizResults.Correct + quizResults.Incorrect)) * 100
 	prompt := fmt.Sprintf("Write a positive tone message giving feedback base on a quiz score of %v percent"+
 		" then tell the user they need to practice more on the following, if provided: "+
-		" Strings: %v, Patterns: %v.", percentage, violinStrings, patterns)
+		" Strings: %v, Patterns: %v. eg. You need to work more on the A and D strings. "+
+		"Write at most 4 sentences.", percentage, violinStrings, patterns)
 
 	req := openai.ChatCompletionRequest{
 		Model:     openai.GPT3Dot5Turbo,
-		MaxTokens: 200,
+		MaxTokens: 100,
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleAssistant,
