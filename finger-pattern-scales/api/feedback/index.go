@@ -69,8 +69,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		"No need to thank the user. Say something encouraging like 'Great job!' or 'Keep working on it' "+
 		" then tell the user they need to practice more on the following, based on the items in the bracketed lists: "+
 		" Strings: [%v], Patterns: [%v]. "+
-		"Use a phrase like 'You need to work more on the A and D strings.'"+
-		" or 'You need to practice the 1-2 pattern some more.' "+
+		"Use a phrase like 'You need to work more on the [string name] and [other string] strings.'"+
+		" or 'You need to practice the [pattern name] pattern some more.' if applicable"+
 		"If there are no Strings are provided, skip that part. "+
 		"If there are no Patterns are provided, skip that part. "+
 		"A perfect score does not require a practice recommendation. "+
