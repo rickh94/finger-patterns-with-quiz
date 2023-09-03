@@ -46,15 +46,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		if count >= 2 {
 			switch pattern {
 			case "oneTwo":
-				patterns = append(violinStrings, "1-2 Pattern")
+				patterns = append(patterns, "1-2 Pattern")
 			case "twoThree":
-				patterns = append(violinStrings, "2-3 Pattern")
+				patterns = append(patterns, "2-3 Pattern")
 			case "threeFour":
-				patterns = append(violinStrings, "3-4 Pattern")
+				patterns = append(patterns, "3-4 Pattern")
 			case "wholeSteps":
-				patterns = append(violinStrings, "Whole Steps Pattern")
+				patterns = append(patterns, "Whole Steps Pattern")
 			case "halfSteps":
-				patterns = append(violinStrings, "Half Steps Pattern")
+				patterns = append(patterns, "Half Steps Pattern")
 			default:
 				continue
 			}
@@ -64,9 +64,11 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	client := openai.NewClient(apiKey)
 
 	percentage := (quizResults.Correct / (quizResults.Correct + quizResults.Incorrect)) * 100
-	prompt := fmt.Sprintf("Write a positive tone message giving feedback base on a quiz score of %v percent"+
+	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %v percent "+
+		"No need to thank the user. Say something encouraging like 'Great job!' or 'Keep working on it' "+
 		" then tell the user they need to practice more on the following, if provided: "+
 		" Strings: %v, Patterns: %v. eg. You need to work more on the A and D strings. "+
+		" or 'You need to practice the 1-2 pattern some more.' "+
 		"Write at most 4 sentences.", percentage, violinStrings, patterns)
 
 	req := openai.ChatCompletionRequest{
