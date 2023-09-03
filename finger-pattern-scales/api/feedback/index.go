@@ -18,9 +18,9 @@ type Missed struct {
 }
 
 type QuizResults struct {
-	Correct   int    `json:"correct"`
-	Incorrect int    `json:"incorrect"`
-	Missed    Missed `json:"missed"`
+	Correct   float32 `json:"correct"`
+	Incorrect float32 `json:"incorrect"`
+	Missed    Missed  `json:"missed"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -100,4 +100,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 	// fmt.Fprintf(w, "Correct: %d, Incorrect: %d", quizResults.Correct, quizResults.Incorrect)
 	fmt.Fprintf(w, resp.Choices[0].Message.Content)
+	fmt.Fprintf(w, "\nScore: %v", percentage)
 }
