@@ -68,18 +68,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		" then tell the user they need to practice more on the following, if provided: "+
 		" Strings: %v, Patterns: %v.", percentage, violinStrings, patterns)
 
-	req := openai.CompletionRequest{
-		Model:     openai.GPT3Ada,
+	req := openai.ChatCompletionRequest{
+		Model:     openai.GPT3Dot5Turbo,
 		MaxTokens: 200,
-		Prompt:    prompt,
+		Messages: []openai.ChatCompletionMessage{
+			{
+				Role:    openai.ChatMessageRoleAssistant,
+				Content: prompt,
+			},
+		},
 	}
 
 	ctx := context.Background()
-	resp, err := client.CreateCompletion(ctx, req)
+	resp, err := client.CreateChatCompletion(ctx, req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	// fmt.Fprintf(w, "Correct: %d, Incorrect: %d", quizResults.Correct, quizResults.Incorrect)
-	fmt.Fprintf(w, resp.Choices[0].Text)
+	fmt.Fprintf(w, resp.Choices[0].Message.Content)
 }
