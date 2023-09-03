@@ -98,7 +98,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	// fmt.Fprintf(w, "Correct: %d, Incorrect: %d", quizResults.Correct, quizResults.Incorrect)
 	fmt.Fprintf(w, resp.Choices[0].Message.Content)
-	fmt.Fprintf(w, "\nScore: %v", percentage)
 }
