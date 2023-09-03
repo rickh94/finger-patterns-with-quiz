@@ -65,7 +65,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	client := openai.NewClient(apiKey)
 
 	percentage := (quizResults.Correct / (quizResults.Correct + quizResults.Incorrect)) * 100
-	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %v percent. "+
+	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %.2f percent. "+
 		"It should be more positive the better the score. "+
 		"No need to thank the user. "+
 		" then tell the user they need to practice more on the following, based on the items in the bracketed lists: "+
@@ -75,7 +75,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		"If there are no Strings are provided, skip that part. "+
 		"If there are no Patterns are provided, skip that part. "+
 		"A perfect score does not require a practice recommendation. "+
-		"Write at most 5 sentences.",
+		"Write at most 4 short sentences.",
 		percentage,
 		strings.Join(violinStrings, ", "),
 		strings.Join(patterns, ", "),
@@ -83,7 +83,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	req := openai.ChatCompletionRequest{
 		Model:     openai.GPT3Dot5Turbo,
-		MaxTokens: 150,
+		MaxTokens: 100,
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleAssistant,
