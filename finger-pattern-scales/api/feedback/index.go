@@ -65,8 +65,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	client := openai.NewClient(apiKey)
 
 	percentage := (quizResults.Correct / (quizResults.Correct + quizResults.Incorrect)) * 100
-	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %v percent "+
-		"No need to thank the user. Say something encouraging like 'Great job!' or 'Keep working on it' "+
+	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %v percent. "+
+		"It should be more positive the better the score. "+
+		"No need to thank the user. "+
 		" then tell the user they need to practice more on the following, based on the items in the bracketed lists: "+
 		" Strings: [%v], Patterns: [%v]. "+
 		"Use a phrase like 'You need to work more on the [string name] and [other string] strings.'"+
