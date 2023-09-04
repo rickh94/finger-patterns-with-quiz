@@ -12,7 +12,7 @@ import TakingQuiz from './quiz/modes/TakingQuiz.tsx';
 import { useState } from 'preact/hooks';
 
 export default function Quiz() {
-  const [mode, setMode] = useState<QuizMode>(QuizMode.Results);
+  const [mode, setMode] = useState<QuizMode>(QuizMode.Setup);
   const [quizSettings, setQuizSettings] = useState<QuizSettings>(quizDefaults);
   const [quizQuestions, setQuizQuestions] = useState<QuestionInfo[]>([]);
   const [results, setResults] = useState<QuizResultsInfo>({
