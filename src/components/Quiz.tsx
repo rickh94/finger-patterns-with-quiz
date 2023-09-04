@@ -15,31 +15,36 @@ export default function Quiz() {
   const [mode, setMode] = useState<QuizMode>(QuizMode.Results);
   const [quizSettings, setQuizSettings] = useState<QuizSettings>(quizDefaults);
   const [quizQuestions, setQuizQuestions] = useState<QuestionInfo[]>([]);
-  // const [results, setResults] = useState<QuizResultsInfo>(quizResultsBlank);
   const [results, setResults] = useState<QuizResultsInfo>({
-    correct: 5,
-    incorrect: 5,
-    missed: {
-      violinString: {
-        E: 2,
-        A: 0,
-        D: 3,
-        G: 0,
-      },
-      patternId: {
-        oneTwo: 0,
-        twoThree: 1,
-        threeFour: 0,
-        wholeSteps: 1,
-        halfSteps: 2,
-      },
-      patternPosition: {
-        low: 2,
-        normal: 1,
-        high: 1,
-      },
-    },
+    ...quizResultsBlank,
   });
+
+  function clearResults() {
+    setResults({
+      correct: 0,
+      incorrect: 0,
+      missed: {
+        violinString: {
+          E: 0,
+          A: 0,
+          D: 0,
+          G: 0,
+        },
+        patternId: {
+          oneTwo: 0,
+          twoThree: 0,
+          threeFour: 0,
+          wholeSteps: 0,
+          halfSteps: 0,
+        },
+        patternPosition: {
+          low: 0,
+          normal: 0,
+          high: 0,
+        },
+      },
+    });
+  }
 
   return (
     // this is a jsx switch case hack. why don't i like jsx?
@@ -52,6 +57,7 @@ export default function Quiz() {
               quizSettings={quizSettings}
               setQuizSettings={setQuizSettings}
               setQuizQuestions={setQuizQuestions}
+              clearResults={clearResults}
             />
           ),
           [QuizMode.Taking]: (
@@ -67,6 +73,8 @@ export default function Quiz() {
               setMode={setMode}
               results={results}
               quizSettings={quizSettings}
+              setQuizQuestions={setQuizQuestions}
+              clearResults={clearResults}
             />
           ),
         }[mode]

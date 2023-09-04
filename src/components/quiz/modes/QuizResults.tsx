@@ -1,33 +1,65 @@
-import patterns from '../../../patterns.ts';
+import { useState, useEffect } from 'preact/hooks';
 import {
   QuizMode,
   type QuizResultsInfo,
   type QuizSettings,
-  type ViolinString,
-  type PatternId,
+  type QuestionInfo,
+  quizResultsBlank,
 } from '../common.ts';
-// TODO: refactor to multiple grids for different numbers of columns
+import generateQuiz from '../generateQuiz.ts';
+// TODO: make the loading feedback a little prettier, maybe its own component
 
 type QuizResultsProps = {
   setMode: (mode: QuizMode) => void;
   results: QuizResultsInfo;
   quizSettings: QuizSettings;
+  setQuizQuestions: (quizQuestions: QuestionInfo[]) => void;
+  clearResults: () => void;
 };
 
 export default function QuizResults({
   setMode,
   results,
   quizSettings,
+  setQuizQuestions,
+  clearResults,
 }: QuizResultsProps) {
-  const percentage = (results.correct / quizSettings.numOfQuestions) * 100;
-  let colorClass = '';
-  if (percentage >= 79.9) {
-    colorClass = 'text-emerald-500';
-  } else if (percentage >= 49.9) {
-    colorClass = 'text-amber-500';
-  } else {
-    colorClass = 'text-rose-500';
-  }
+  const [percentage, setPercentage] = useState(0);
+  const [colorClass, setColorClass] = useState('');
+  const [message, setMessage] = useState('Loading Feedback...');
+  useEffect(() => {
+    setPercentage((results.correct / quizSettings.numOfQuestions) * 100);
+    if (percentage >= 79.9) {
+      setColorClass('text-emerald-500');
+    } else if (percentage >= 49.9) {
+      setColorClass('text-amber-500');
+    } else {
+      setColorClass('text-rose-500');
+    }
+    fetch('/api/feedback', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(results),
+    })
+      .then((res: Response) => {
+        if (res.ok) {
+          return res.text();
+        }
+      })
+      .then((text?: string) => {
+        if (text) {
+          setMessage(text);
+        } else {
+          setMessage('Something went wrong.');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setMessage('Something went wrong.');
+      });
+  }, [results, quizSettings]);
 
   function itemColorClass(mistakes: number) {
     if (mistakes > 2) {
@@ -39,23 +71,38 @@ export default function QuizResults({
     }
   }
 
-  // function resultsMessage() {
-  //   if (percentage === 100.0) {
-  //     return 'You got them all right! Keep it up!';
-  //   }
-  //   let message = '';
-  //   if (percentage >= 80.0) {
-  //     message += "Great Job! You're doing well.";
-  //   } else if (percentage >= 50.0) {
-  //     message += 'You did pretty well, but you can still improve.';
-  //   } else {
-  //     message += 'You might need to review your finger patterns a little more.';
-  //   }
-  // }
+  function newQuiz() {
+    const questions = generateQuiz(quizSettings);
+    setQuizQuestions(questions);
+    setMode(QuizMode.Taking);
+    clearResults();
+  }
+
+  // TODO: call api endpoint to get ai generated text and display on the page.
+  // display loading text until it's available. Needs to be in a useEffect.
 
   return (
     <div class="mx-auto max-w-3xl flex flex-col gap-4">
-      <h2 class="my-8 text-center text-4xl font-bold">Quiz Results</h2>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+        <div>
+          <h2 class="my-6 text-center text-4xl font-bold">Quiz Results</h2>
+        </div>
+        <div class="flex gap-x-2">
+          <button
+            class="rounded-lg border border-gray-300 bg-fuchsia-600 shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600 text-white font-bold px-4 py-2"
+            onClick={() => newQuiz()}
+          >
+            New Quiz
+          </button>
+          <button
+            class="rounded-lg border border-gray-300 bg-amber-600 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 text-white font-bold px-4 py-2"
+            onClick={() => setMode(QuizMode.Setup)}
+          >
+            Change Quiz Settings
+          </button>
+        </div>
+      </div>
+      <p class="text-lg mb-2">{message}</p>
       <div className="grid max-w-3xl grid-cols-1 gap-8 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-gray-300 bg-white px-4 py-6 shadow-sm">
           <h3 className="text-center text-2xl font-bold">Percentage</h3>

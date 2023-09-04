@@ -23,7 +23,7 @@ type QuizResults struct {
 	Missed    Missed  `json:"missed"`
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func FeedbackHandler(w http.ResponseWriter, r *http.Request) {
 	var quizResults QuizResults
 
 	if err := json.NewDecoder(r.Body).Decode(&quizResults); err != nil {
@@ -65,7 +65,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	client := openai.NewClient(apiKey)
 
 	percentage := (quizResults.Correct / (quizResults.Correct + quizResults.Incorrect)) * 100
-	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %.2f percent. "+
+	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %.0f percent. "+
 		"It should be more positive the better the score. "+
 		"No need to thank the user. "+
 		" then tell the user they need to practice more on the following, based on the items in the bracketed lists: "+

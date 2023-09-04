@@ -3,7 +3,9 @@ import {
   QuizMode,
   type QuizSettings,
   type QuestionInfo,
+  type QuizResultsInfo,
   quizDefaults,
+  quizResultsBlank,
 } from '../common.ts';
 import generateQuiz from '../generateQuiz.ts';
 import ListCheckBox from '../components/ListCheckBox.tsx';
@@ -14,7 +16,8 @@ type QuizSetupProps = {
   setMode: (mode: QuizMode) => void;
   quizSettings: QuizSettings;
   setQuizSettings: (quizSettings: QuizSettings) => void;
-  setQuizQuestions: (quizSettings: QuestionInfo[]) => void;
+  setQuizQuestions: (quizQuestions: QuestionInfo[]) => void;
+  clearResults: () => void;
 };
 
 export default function QuizSetup({
@@ -22,6 +25,7 @@ export default function QuizSetup({
   quizSettings,
   setQuizSettings,
   setQuizQuestions,
+  clearResults,
 }: QuizSetupProps) {
   const [error, setError] = useState<string | null>(null);
   function validateQuizSettings() {
@@ -46,6 +50,7 @@ export default function QuizSetup({
     setError(null);
     const questions = generateQuiz(quizSettings);
     setQuizQuestions(questions);
+    clearResults();
     setMode(QuizMode.Taking);
   }
 

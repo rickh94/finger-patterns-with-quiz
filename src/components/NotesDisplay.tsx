@@ -1,7 +1,7 @@
 import { useStore } from '@nanostores/preact';
 import { activeFinger } from '../stores.ts';
 import ABCJS, { type AbcElem } from 'abcjs';
-import { useEffect, useId } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 
 type NotesDisplayProps = {
   baseId: string;

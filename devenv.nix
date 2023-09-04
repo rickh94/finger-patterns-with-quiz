@@ -2,10 +2,16 @@
 
 {
   # https://devenv.sh/packages/
-  packages = [ pkgs.git pkgs.nodejs pkgs.nodePackages.prettier ];
+  packages = [
+    pkgs.git
+    pkgs.nodejs
+    pkgs.nodePackages.prettier
+    pkgs.go
+  ];
 
   languages.javascript.enable = true;
   languages.typescript.enable = true;
+  languages.go.enable = true;
   # https://devenv.sh/scripts/
 
   # https://devenv.sh/languages/
