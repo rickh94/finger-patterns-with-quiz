@@ -15,9 +15,9 @@ A web app for helping violin students learn their finger patterns.
 
 ## Practice Quiz
 
-[ ] Show a set of notes for a string and student selects finger pattern from multiple choice names/chart
+[x] Show a set of notes for a string and student selects finger pattern from multiple choice names/chart
 [ ] Show a key signature and student picks finger patterns per string
-[ ] offers some configuration
+[x] offers some configuration
 
 ## Practice aid
 

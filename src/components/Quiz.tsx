@@ -9,10 +9,12 @@ import {
 import QuizSetup from './quiz/modes/QuizSetup.tsx';
 import QuizResults from './quiz/modes/QuizResults.tsx';
 import TakingQuiz from './quiz/modes/TakingQuiz.tsx';
+import QuizSplash from './quiz/modes/QuizSplash.tsx';
 import { useState } from 'preact/hooks';
+// TODO: quiz splash screen to choose whether to configure or go with defaults.
 
 export default function Quiz() {
-  const [mode, setMode] = useState<QuizMode>(QuizMode.Setup);
+  const [mode, setMode] = useState<QuizMode>(QuizMode.Splash);
   const [quizSettings, setQuizSettings] = useState<QuizSettings>(quizDefaults);
   const [quizQuestions, setQuizQuestions] = useState<QuestionInfo[]>([]);
   const [results, setResults] = useState<QuizResultsInfo>({
@@ -72,6 +74,14 @@ export default function Quiz() {
             <QuizResults
               setMode={setMode}
               results={results}
+              quizSettings={quizSettings}
+              setQuizQuestions={setQuizQuestions}
+              clearResults={clearResults}
+            />
+          ),
+          [QuizMode.Splash]: (
+            <QuizSplash
+              setMode={setMode}
               quizSettings={quizSettings}
               setQuizQuestions={setQuizQuestions}
               clearResults={clearResults}

@@ -3,9 +3,7 @@ import {
   QuizMode,
   type QuizSettings,
   type QuestionInfo,
-  type QuizResultsInfo,
   quizDefaults,
-  quizResultsBlank,
 } from '../common.ts';
 import generateQuiz from '../generateQuiz.ts';
 import ListCheckBox from '../components/ListCheckBox.tsx';
@@ -364,7 +362,7 @@ export default function QuizSetup({
           type="submit"
           className="rounded-md bg-fuchsia-600 px-5 py-3 text-lg font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
         >
-          Take Quiz
+          Start Quiz
         </button>
       </div>
     </form>

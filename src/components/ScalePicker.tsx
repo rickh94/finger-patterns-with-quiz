@@ -4,6 +4,7 @@ import { useStore } from '@nanostores/preact';
 import { scaleMenuOpen } from '../stores';
 import { useState } from 'preact/hooks';
 import { Transition, Dialog } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function ScalePicker() {
   const $scaleMenuOpen = useStore(scaleMenuOpen);
@@ -44,25 +45,11 @@ export default function ScalePicker() {
                 <div class="relative z-50 flex w-full items-center justify-between">
                   <div class="text-2xl font-bold">Scales</div>
                   <button
-                    class="rounded border-2 border-white"
+                    class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus:ring-2 focus:ring-rose-500"
                     onClick={() => scaleMenuOpen.set(false)}
                   >
                     <span class="sr-only">Close Navigation</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
+                    <XMarkIcon class="h-6 w-6" />
                   </button>
                 </div>
                 <nav

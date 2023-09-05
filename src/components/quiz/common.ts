@@ -1,4 +1,5 @@
 export enum QuizMode {
+  Splash,
   Setup,
   Results,
   Taking,
