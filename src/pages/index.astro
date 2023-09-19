@@ -9,7 +9,12 @@ import patterns from '../patterns';
 ---
 
 <script>
-  import { moreInfoOpen, moreInfoPatternId } from '../stores.ts';
+  import {
+    moreInfoOpen,
+    moreInfoPatternId,
+    type PatternId,
+  } from '../stores.ts';
+  import patterns from '../patterns';
 
   function showMoreInfo(button: HTMLButtonElement) {
     if (!button.dataset.patternId) {
@@ -18,7 +23,7 @@ import patterns from '../patterns';
       return;
     }
     moreInfoOpen.set(true);
-    moreInfoPatternId.set(button.dataset.patternId);
+    moreInfoPatternId.set(button.dataset.patternId as PatternId);
   }
 
   document.addEventListener('astro:page-load', () => {
@@ -29,6 +34,12 @@ import patterns from '../patterns';
       button.addEventListener('click', () =>
         showMoreInfo(button as HTMLButtonElement)
       );
+    }
+    const url = new URL(window.location.href);
+    const patternId = url.searchParams.get('pattern');
+    if (patternId && patternId in patterns.normal) {
+      moreInfoPatternId.set(patternId as PatternId);
+      moreInfoOpen.set(true);
     }
   });
 </script>
@@ -55,7 +66,7 @@ import patterns from '../patterns';
         </ScalesButton> to see how they work in action, or
         <a
           href="/quiz"
-          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
+          class="border-b-2 pb-1 border-fuchsia-600 hover:text-fuchsia-800"
         >
           practice identifying them
         </a> with the customizable quiz.

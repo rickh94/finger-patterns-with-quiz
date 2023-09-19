@@ -96,7 +96,11 @@ export default function PatternInfo() {
                   </div>
                   <button
                     class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus:ring-2 focus:ring-rose-500"
-                    onClick={() => moreInfoOpen.set(false)}
+                    onClick={() => {
+                      moreInfoOpen.set(false);
+                      window.location.href =
+                        window.location.origin + window.location.pathname;
+                    }}
                   >
                     <span class="sr-only">Close Navigation</span>
                     <XMarkIcon class="h-6 w-6" />
