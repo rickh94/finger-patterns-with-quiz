@@ -102,7 +102,7 @@ export default function QuizResults({
           </button>
         </div>
       </div>
-      <p class="mb-2 text-lg">{message}</p>
+      <p class="wrap-balance mb-2 text-lg">{message}</p>
       <div className="grid max-w-3xl grid-cols-1 gap-8 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-gray-300 bg-white px-4 py-6 shadow-sm">
           <h3 className="text-center text-2xl font-bold">Percentage</h3>

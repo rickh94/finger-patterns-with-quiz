@@ -97,6 +97,7 @@ export default function Quiz() {
           ),
           [PracticeMode.Finished]: (
             <PracticeFinished
+              exerciseConfigs={exerciseConfigs}
               restart={restart}
               regenerate={regenerate}
               reconfigure={reconfigure}

@@ -74,20 +74,23 @@ export default function PracticeSetup({
                     >
                       <div className="flex min-w-0 gap-x-4">
                         <div className="min-w-0 flex-auto">
-                          <p className="leading-6 text-gray-900">
+                          <p className="wrap-balance italic leading-6 text-gray-900">
                             Practice the{' '}
-                            <em class="font-bold italic text-fuchsia-700">
+                            <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                               {patterns.normal[exercise.pattern].name}
-                            </em>{' '}
+                            </strong>{' '}
                             on the{' '}
-                            <em class="font-bold italic text-fuchsia-700">
+                            <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                               {exercise.violinString} String
-                            </em>{' '}
+                            </strong>{' '}
                             in the{' '}
-                            <em class="font-bold italic text-fuchsia-700">
+                            <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                               {exercise.position} position
-                            </em>{' '}
-                            for {exercise.numOfMeasures} measures
+                            </strong>{' '}
+                            for{' '}
+                            <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
+                              {exercise.numOfMeasures} measures
+                            </strong>
                           </p>
                         </div>
                       </div>
@@ -107,7 +110,7 @@ export default function PracticeSetup({
             <div class="mt-4 flex w-full justify-end space-x-2">
               <button
                 type="button"
-                onClick={() => clear()}
+                onClick={clear}
                 className="rounded-md bg-rose-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
               >
                 Delete All Exercises
