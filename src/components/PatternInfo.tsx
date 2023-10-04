@@ -97,8 +97,10 @@ export default function PatternInfo() {
                     class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus:ring-2 focus:ring-rose-500"
                     onClick={() => {
                       moreInfoOpen.set(false);
-                      window.location.href =
-                        window.location.origin + window.location.pathname;
+                      if (window.location.search) {
+                        window.location.href =
+                          window.location.origin + window.location.pathname;
+                      }
                     }}
                   >
                     <span class="sr-only">Close Navigation</span>

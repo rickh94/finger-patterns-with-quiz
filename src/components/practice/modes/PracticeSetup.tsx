@@ -10,7 +10,9 @@ import { generateExerciseConfigsFromQuery } from '../generateExercises.ts';
 type PracticeSetupProps = {
   startPracticing: () => void;
   exerciseConfigs: SingleExerciseConfig[];
-  setExerciseConfigs: (exerciseConfigs: SingleExerciseConfig[]) => void;
+  setExerciseConfigs: (
+    f: (exerciseConfigs: SingleExerciseConfig[]) => SingleExerciseConfig[]
+  ) => void;
   clear: () => void;
 };
 
@@ -20,23 +22,20 @@ export default function PracticeSetup({
   setExerciseConfigs,
   clear,
 }: PracticeSetupProps) {
-  const [nextIdx, setNextIdx] = useState(0);
-
   function addExerciseConfig(exercise: SingleExerciseConfig) {
-    exercise.index = nextIdx;
-    setNextIdx((curr) => curr + 1);
-    exerciseConfigs.push(exercise);
-    setExerciseConfigs(exerciseConfigs);
+    exercise.index = Math.floor(Math.random() * 1000000);
+    setExerciseConfigs((configs: SingleExerciseConfig[]) =>
+      configs.concat([exercise])
+    );
   }
 
   function deleteExerciseConfig(idx: number | undefined) {
     if (idx === undefined) {
       return;
     }
-    const newConfigs = exerciseConfigs.filter((ex: SingleExerciseConfig) => {
-      return ex.index !== idx;
-    });
-    setExerciseConfigs(newConfigs);
+    setExerciseConfigs((configs: SingleExerciseConfig[]) =>
+      configs.filter((ex: SingleExerciseConfig) => ex.index !== idx)
+    );
   }
 
   useEffect(() => {
@@ -47,6 +46,8 @@ export default function PracticeSetup({
       }
     }
   }, []);
+
+  useEffect(() => {}, [exerciseConfigs]);
 
   return (
     <>

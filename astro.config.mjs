@@ -13,7 +13,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         page !==
-        'https://violinfingerpatterns.com/all-the-patterns/all-of-them',
+        'https://violinfingerpatterns.com/all-the-patterns/all-of-them/',
     }),
   ],
   output: 'static',
