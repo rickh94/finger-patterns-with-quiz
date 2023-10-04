@@ -26,7 +26,7 @@ export default function QuizSplash({
         Select below to start taking the quiz immediately with the default
         settings or customize the length and question difficulty.
       </p>
-      <div class="mb-4 flex flex-col sm:flex-row gap-6">
+      <div class="mb-4 flex flex-col gap-6 sm:flex-row">
         <button
           type="button"
           onClick={() => startTaking()}

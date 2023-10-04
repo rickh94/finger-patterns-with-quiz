@@ -6,7 +6,6 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import FingerDisplay from './FingerDisplay.tsx';
 import patterns from '../patterns.ts';
 // TODO: add link to exercise generator when implemented
-// TODO: add separate store for open and more info to prevent weird window behavior
 
 export default function PatternInfo() {
   const $open = useStore(moreInfoOpen);
@@ -107,7 +106,7 @@ export default function PatternInfo() {
                   </button>
                 </div>
                 <div
-                  class="relative z-50 mx-auto mt-4 w-full text-left flex flex-col gap-2"
+                  class="relative z-50 mx-auto mt-4 flex w-full flex-col gap-2 text-left"
                   aria-label="primary"
                 >
                   {$patternId && (
@@ -117,6 +116,15 @@ export default function PatternInfo() {
                       widths={patterns.normal[$patternId].widths}
                     />
                   )}
+
+                  <div class="my-2">
+                    <a
+                      href={`/practice?patternId=${$patternId}`}
+                      className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+                    >
+                      Practice Now
+                    </a>
+                  </div>
                   {patternDescription()}
                   {patternExercises()}
                 </div>

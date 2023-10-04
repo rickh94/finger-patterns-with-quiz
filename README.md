@@ -2,16 +2,14 @@
 
 A web app for helping violin students learn their finger patterns.
 
-
 ## Basic Capabilities
 
 [x] Outputs all first position finger patterns for a given key as name and chart
-        [x] shows scale for key
-        [ ] shows exercise for practicing finger patterns (sevcik/schradiek)
+[x] shows scale for key
+[x] shows exercise for practicing finger patterns (sevcik/schradiek)
 [ ] Outputs finger patterns for a set of notes on a string (validates note set)
-        [ ] all basic finger patterns
-        [ ] possible edge cases
-
+[ ] all basic finger patterns
+[ ] possible edge cases
 
 ## Practice Quiz
 
@@ -22,7 +20,6 @@ A web app for helping violin students learn their finger patterns.
 ## Practice aid
 
 [ ] students can save finger patterns with a piece
-        [ ] basic finger patterns for starting key
-        [ ] record changes at key change
-        [ ] record accidentals
-
+[ ] basic finger patterns for starting key
+[ ] record changes at key change
+[ ] record accidentals

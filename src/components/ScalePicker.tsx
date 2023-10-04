@@ -5,6 +5,7 @@ import { scaleMenuOpen } from '../stores';
 import { useState } from 'preact/hooks';
 import { Transition, Dialog } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+// TODO: make the links look nicer/more consistent with other visual style
 
 export default function ScalePicker() {
   const $scaleMenuOpen = useStore(scaleMenuOpen);

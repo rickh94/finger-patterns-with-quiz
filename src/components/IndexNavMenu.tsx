@@ -53,6 +53,14 @@ function NavLinks() {
       </div>
       <div class="flex justify-end">
         <a
+          href="/practice"
+          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
+        >
+          Practice Playing
+        </a>
+      </div>
+      <div class="flex justify-end">
+        <a
           href="/about"
           class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
         >

@@ -5,6 +5,8 @@ export type Pattern = {
   description?: string[];
   exercises?: { name: string; link: string }[];
   imageLink?: string;
+  id: 'oneTwo' | 'twoThree' | 'threeFour' | 'wholeSteps' | 'halfSteps';
+  position: 'low' | 'normal' | 'high';
 };
 // TODO: take and add images for each finger pattern, either replace or
 // supplement diagram
@@ -20,22 +22,32 @@ const patterns: PatternList = {
     oneTwo: {
       name: '1-2 Pattern',
       widths: [4, 4, 16, 16],
+      position: 'low',
+      id: 'oneTwo',
     },
     twoThree: {
       name: '2-3 Pattern',
       widths: [4, 16, 4, 16],
+      position: 'low',
+      id: 'twoThree',
     },
     threeFour: {
       name: '3-4 Pattern',
       widths: [4, 16, 16, 4],
+      position: 'low',
+      id: 'twoThree',
     },
     wholeSteps: {
       name: 'Whole Steps Pattern',
       widths: [4, 16, 16, 16],
+      position: 'low',
+      id: 'wholeSteps',
     },
     halfSteps: {
       name: 'Half Steps Pattern',
       widths: [4, 4, 20, 4],
+      position: 'low',
+      id: 'halfSteps',
     },
   },
   normal: {
@@ -63,6 +75,8 @@ const patterns: PatternList = {
           link: 'https://imslp.org/wiki/School_of_Violin_Technique,_Op.1_(%C5%A0ev%C4%8D%C3%ADk,_Otakar)',
         },
       ],
+      position: 'normal',
+      id: 'oneTwo',
     },
     twoThree: {
       name: '2-3 Pattern',
@@ -87,10 +101,14 @@ const patterns: PatternList = {
           link: 'https://imslp.org/wiki/School_of_Violin_Technics_(Schradieck,_Henry)',
         },
       ],
+      position: 'normal',
+      id: 'twoThree',
     },
     threeFour: {
       name: '3-4 Pattern',
       widths: [16, 16, 16, 4],
+      position: 'normal',
+      id: 'threeFour',
       description: [
         'The 3-4 Pattern has a half step between the third and fourth fingers. ' +
           'They should be so close that they are touching. The other fingers ' +
@@ -117,6 +135,8 @@ const patterns: PatternList = {
     wholeSteps: {
       name: 'Whole Steps Pattern',
       widths: [16, 16, 16, 16],
+      position: 'normal',
+      id: 'wholeSteps',
       description: [
         'The Whole Steps Pattern does not have any half steps, as the name suggests. ' +
           'Place your fingers so none of them are touching. ',
@@ -145,28 +165,40 @@ const patterns: PatternList = {
           'such as harmonic and melodic minor scales, and sections with lots of ' +
           'accidentals.',
       ],
+      position: 'normal',
+      id: 'halfSteps',
     },
   },
   high: {
     oneTwo: {
       name: '1-2 Pattern',
       widths: [20, 4, 16, 16],
+      position: 'high',
+      id: 'oneTwo',
     },
     twoThree: {
       name: '2-3 Pattern',
       widths: [20, 16, 4, 16],
+      position: 'high',
+      id: 'twoThree',
     },
     threeFour: {
       name: '3-4 Pattern',
       widths: [20, 16, 16, 4],
+      position: 'high',
+      id: 'threeFour',
     },
     wholeSteps: {
       name: 'Whole Steps Pattern',
       widths: [20, 16, 16, 16],
+      position: 'high',
+      id: 'wholeSteps',
     },
     halfSteps: {
       name: 'Half Steps Pattern',
       widths: [20, 4, 20, 4],
+      position: 'high',
+      id: 'halfSteps',
     },
   },
 };

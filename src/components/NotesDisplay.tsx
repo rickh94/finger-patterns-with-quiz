@@ -8,12 +8,22 @@ type NotesDisplayProps = {
   notes: string;
   offset: number;
   disabled?: boolean;
+  wrap?: {
+    minSpacing: number;
+    maxSpacing: number;
+    preferredMeasuresPerLine: number;
+  };
+  staffwidth?: number;
+  responsive?: 'resize';
 };
 
 export default function NotesDisplay({
   baseId,
   notes,
   offset,
+  wrap = undefined,
+  staffwidth = undefined,
+  responsive = undefined,
   disabled = false,
 }: NotesDisplayProps) {
   const $activeFinger = useStore(activeFinger);
@@ -55,8 +65,11 @@ export default function NotesDisplay({
       paddingright: 0,
       paddingbottom: 0,
       paddingtop: 0,
+      wrap,
+      staffwidth,
+      responsive,
     });
-  }, [notes]);
+  }, [notes, wrap, staffwidth, responsive]);
 
   useEffect(() => {
     if (!$activeFinger.num || !$activeFinger.baseId) {

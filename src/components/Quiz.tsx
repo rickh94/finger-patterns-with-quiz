@@ -11,7 +11,6 @@ import QuizResults from './quiz/modes/QuizResults.tsx';
 import TakingQuiz from './quiz/modes/TakingQuiz.tsx';
 import QuizSplash from './quiz/modes/QuizSplash.tsx';
 import { useState } from 'preact/hooks';
-// TODO: quiz splash screen to choose whether to configure or go with defaults.
 
 export default function Quiz() {
   const [mode, setMode] = useState<QuizMode>(QuizMode.Splash);

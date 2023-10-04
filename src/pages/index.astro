@@ -57,19 +57,25 @@ import patterns from '../patterns';
     <div class="max-w-4xl mx-auto">
       <p class="mb-4 px-2">
         Here are the five basic finger patterns on the violin. Click one to read
-        more about it,
+        more about each one, Practice a
         <ScalesButton
           client:load
-          className="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
+          className="border-b-2 -pb-1 border-fuchsia-600 hover:text-fuchsia-800"
         >
-          Pick a Scale
-        </ScalesButton> to see how they work in action, or
+          Scale
+        </ScalesButton> or
+        <a
+          href="/practice"
+          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
+          >Create Some Exercises</a
+        >
+         to see how they work in action, or
         <a
           href="/quiz"
-          class="border-b-2 pb-1 border-fuchsia-600 hover:text-fuchsia-800"
+          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
         >
-          practice identifying them
-        </a> with the customizable quiz.
+          practice identifying them</a
+        > with the customizable quiz.
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto">
         {
