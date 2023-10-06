@@ -57,7 +57,7 @@ export default function PracticeDisplay({
           for {exerciseConfig.numOfMeasures} measures
         </h2>
         <FingerDisplay
-          baseId={`exercise-${exerciseConfig.index}`}
+          baseId={`exercise-${exerciseConfig.id}`}
           radius={2}
           widths={
             patterns[exerciseConfig.position][exerciseConfig.pattern].widths
@@ -65,7 +65,7 @@ export default function PracticeDisplay({
           disabled={true}
         />
         <NotesDisplay
-          baseId={`exercise-${exerciseConfigs[currentExerciseIdx].index}`}
+          baseId={`exercise-${exerciseConfigs[currentExerciseIdx].id}`}
           notes={exercises[currentExerciseIdx]}
           offset={0}
           disabled={true}

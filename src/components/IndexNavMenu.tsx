@@ -7,13 +7,13 @@ import ScalesButton from './ScalesButton';
 export default function IndexNavMenu() {
   return (
     <div class="absolute right-0 top-0 m-4">
-      <div class="hidden flex-col items-end gap-y-1 md:flex">
+      <div class="hidden flex-col items-end gap-y-1 lg:flex">
         <NavLinks />
       </div>
       <Menu as="div" className="relative inline-block text-right">
         <div>
           <Menu.Button classname="focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            <Bars3Icon className="inline h-6 w-6 text-fuchsia-800 md:hidden" />
+            <Bars3Icon className="inline h-6 w-6 text-fuchsia-800 lg:hidden" />
             <div class="sr-only">Open Nav Menu</div>
           </Menu.Button>
         </div>

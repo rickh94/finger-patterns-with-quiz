@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 import { type SingleExerciseConfig } from '../common.ts';
 import ExerciseForm from '../components/ExerciseForm.tsx';
 import patterns from '../../../patterns.ts';
@@ -23,18 +23,18 @@ export default function PracticeSetup({
   clear,
 }: PracticeSetupProps) {
   function addExerciseConfig(exercise: SingleExerciseConfig) {
-    exercise.index = Math.floor(Math.random() * 1000000);
+    exercise.id = Math.floor(Math.random() * 1000000);
     setExerciseConfigs((configs: SingleExerciseConfig[]) =>
       configs.concat([exercise])
     );
   }
 
-  function deleteExerciseConfig(idx: number | undefined) {
-    if (idx === undefined) {
+  function deleteExerciseConfig(deleteId: number | undefined) {
+    if (deleteId === undefined) {
       return;
     }
     setExerciseConfigs((configs: SingleExerciseConfig[]) =>
-      configs.filter((ex: SingleExerciseConfig) => ex.index !== idx)
+      configs.filter((ex: SingleExerciseConfig) => ex.id !== deleteId)
     );
   }
 
@@ -47,7 +47,7 @@ export default function PracticeSetup({
     }
   }, []);
 
-  useEffect(() => {}, [exerciseConfigs]);
+  useEffect(() => { }, [exerciseConfigs]);
 
   return (
     <>
@@ -55,10 +55,10 @@ export default function PracticeSetup({
         <ExerciseForm save={addExerciseConfig} />
         <div class="md:col-span-2">
           <h2 className="text-2xl font-bold">Exercises</h2>
-          <ul role="list" className="my-2 flex flex-col gap-2">
+          <ul className="my-2 flex flex-col gap-2">
             {exerciseConfigs.map(
               (exercise) =>
-                exercise?.index !== undefined && (
+                exercise?.id !== undefined && (
                   <Transition
                     appear={true}
                     show={true}
@@ -70,7 +70,7 @@ export default function PracticeSetup({
                     leaveTo="opacity-0"
                   >
                     <li
-                      key={exercise.index}
+                      key={exercise.id}
                       className="flex items-center justify-between gap-x-6 rounded bg-white px-4 py-2 shadow"
                     >
                       <div className="flex min-w-0 gap-x-4">
@@ -97,7 +97,7 @@ export default function PracticeSetup({
                       </div>
                       <button
                         type="button"
-                        onClick={() => deleteExerciseConfig(exercise.index)}
+                        onClick={() => deleteExerciseConfig(exercise.id)}
                         className="rounded-md bg-rose-600 px-2.5 py-1.5 text-sm font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
                       >
                         Delete
@@ -117,6 +117,7 @@ export default function PracticeSetup({
                 Delete All Exercises
               </button>
               <button
+                type="button"
                 onClick={startPracticing}
                 className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
               >

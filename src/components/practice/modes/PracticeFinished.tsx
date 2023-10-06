@@ -46,9 +46,9 @@ export default function PracticeFinished({
       <h3 class="text-xl font-bold">Patterns Practiced</h3>
       {exerciseConfigs.map(
         (exercise) =>
-          exercise?.index !== undefined && (
+          exercise?.id !== undefined && (
             <li
-              key={exercise.index}
+              key={exercise.id}
               className="flex items-center justify-between gap-x-6 rounded bg-white px-4 py-2 shadow"
             >
               <div className="flex min-w-0 gap-x-4">

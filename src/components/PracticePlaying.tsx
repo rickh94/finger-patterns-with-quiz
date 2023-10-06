@@ -2,7 +2,7 @@ import { PracticeMode, type SingleExerciseConfig } from './practice/common.ts';
 import PracticeSetup from './practice/modes/PracticeSetup.tsx';
 import PracticeFinished from './practice/modes/PracticeFinished.tsx';
 import PracticeDisplay from './practice/modes/PracticeDisplay.tsx';
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import generateExercises from './practice/generateExercises.ts';
 
 export default function Quiz() {
@@ -97,7 +97,6 @@ export default function Quiz() {
           ),
           [PracticeMode.Finished]: (
             <PracticeFinished
-              exerciseConfigs={exerciseConfigs}
               restart={restart}
               regenerate={regenerate}
               reconfigure={reconfigure}

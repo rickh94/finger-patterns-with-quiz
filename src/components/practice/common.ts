@@ -1,7 +1,7 @@
 export enum PracticeMode {
-  Setup,
-  Display,
-  Finished,
+  Setup = 'SETUP',
+  Display = 'DISPLAY',
+  Finished = 'FINISHED',
 }
 
 export type ViolinString = 'E' | 'A' | 'D' | 'G';
@@ -19,5 +19,5 @@ export type SingleExerciseConfig = {
   position: PatternPosition;
   numOfMeasures: number;
   includeOpen: boolean;
-  index?: number;
+  id?: number;
 };
