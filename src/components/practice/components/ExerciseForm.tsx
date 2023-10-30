@@ -6,11 +6,11 @@ import type {
   PatternId,
   PatternPosition,
 } from '../common';
-import RadioBox from '../../quiz/components/RadioBox.tsx';
+import RadioBox from '../../quiz/components/RadioBox';
 
 enum FormMode {
-  Manual,
-  ByKey,
+  Manual = 'MANUAL',
+  ByKey = 'BY_KEY',
 }
 
 export type ExerciseFormProps = {
@@ -20,15 +20,16 @@ export default function ExerciseForm({ save }: ExerciseFormProps) {
   const [formMode, setFormMode] = useState<FormMode>(FormMode.Manual);
 
   return (
-    <div class="flex flex-col">
+    <div class="flex flex-col px-4">
       <h2 class="mb-1 text-2xl font-bold">Add Exercises</h2>
       <p class="mb-4 text-sm">
         Using the options below, set up an exercise and add it to the list.
         Create as many as you want. You can also add all the patterns for a
         given Key.
       </p>
-      <div class="col-span-2 flex items-center justify-center">
+      <div class="col-span-2 flex items-center justify-center pb-2">
         <button
+          type="button"
           className={
             formMode === FormMode.Manual
               ? 'mr-4 border-b-2 border-fuchsia-800 text-fuchsia-800'
@@ -40,6 +41,7 @@ export default function ExerciseForm({ save }: ExerciseFormProps) {
         </button>{' '}
         |{' '}
         <button
+          type="button"
           className={
             formMode === FormMode.ByKey
               ? 'mx-4 border-b-2 border-fuchsia-800 text-fuchsia-800'
@@ -290,8 +292,8 @@ function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
   function handleSubmit(e: any) {
     e.preventDefault();
     if (!selectedScale) return;
-    let configs = [];
-    for (let scalePattern of selectedScale.patterns) {
+    const configs = [];
+    for (const scalePattern of selectedScale.patterns) {
       configs.push({
         violinString: scalePattern.violinString,
         pattern: scalePattern.pattern.id,
@@ -300,21 +302,22 @@ function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
         includeOpen,
       });
     }
-    if (selectedScale.mode == 'minor') {
+    if (selectedScale.mode === 'minor') {
       const melodicScale = scales.find(
-        (s: Scale) => s.mode == 'melodic' && s.key == selectedScale.key
+        (s: Scale) => s.mode === 'melodic' && s.key === selectedScale.key
       );
       if (!melodicScale) return;
 
       // search for any patterns in the melodic scale that are not already in the configs set and add them
-      for (let scalePattern of melodicScale.patterns) {
+      for (const scalePattern of melodicScale.patterns) {
         if (
-          !configs.find(
-            (c) =>
-              c.pattern == scalePattern.pattern.id &&
-              c.violinString == scalePattern.violinString &&
-              c.position == scalePattern.pattern.position
-          )
+          !configs.find((c) => {
+            return (
+              c.pattern === scalePattern.pattern.id &&
+              c.violinString === scalePattern.violinString &&
+              c.position === scalePattern.pattern.position
+            );
+          })
         ) {
           configs.push({
             violinString: scalePattern.violinString,
@@ -326,7 +329,7 @@ function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
         }
       }
     }
-    for (let config of configs) {
+    for (const config of configs) {
       save(config);
     }
   }
@@ -338,7 +341,7 @@ function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
     >
       {scales.map(
         (scale: Scale) =>
-          scale.mode == 'major' && (
+          scale.mode === 'major' && (
             <RadioBox
               value={scale.key}
               text={scale.name}

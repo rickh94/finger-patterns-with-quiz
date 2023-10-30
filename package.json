@@ -14,6 +14,7 @@
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^4.0.2",
+    "@formkit/auto-animate": "^0.8.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@nanostores/preact": "^0.5.0",
@@ -23,6 +24,8 @@
     "astro": "^3.2.2",
     "nanostores": "^0.9.3",
     "preact": "^10.17.1",
+    "react": "npm:@preact/compat@latest",
+    "react-dom": "npm:@preact/compat@latest",
     "sitemap": "^7.1.1",
     "tailwindcss": "^3.3.3"
   },
