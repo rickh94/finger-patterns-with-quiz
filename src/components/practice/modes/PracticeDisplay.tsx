@@ -4,6 +4,8 @@ import FingerDisplay from '../../FingerDisplay';
 import type { SingleExerciseConfig } from '../common';
 import patterns from '../../../patterns';
 
+// TODO: display sevcik rhythm patterns
+
 export type PracticeDisplayProps = {
   exerciseConfigs: SingleExerciseConfig[];
   exercises: string[];

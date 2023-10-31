@@ -7,6 +7,7 @@ import { generateExerciseConfigsFromQuery } from '../generateExercises';
 import { useAutoAnimate } from '@formkit/auto-animate/preact';
 
 // TODO: add exercise added pop up with jump link arrow
+// TODO: add transition between tabs
 
 type PracticeSetupProps = {
   startPracticing: () => void;
