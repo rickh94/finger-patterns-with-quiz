@@ -6,7 +6,6 @@ import ScalesButton from '../components/ScalesButton';
 import IndexNavMenu from '../components/IndexNavMenu';
 import PatternInfo from '../components/PatternInfo';
 import patterns from '../patterns';
-// TODO: make backdrop less pink
 ---
 
 <script>
@@ -79,7 +78,7 @@ import patterns from '../patterns';
           Object.keys(patterns.normal).map((key) => (
             <button
               type="button"
-              class="rounded-lg cursor-pointer border-2 border-gray-200 bg-white px-4 py-4 shadow-sm flex flex-col justify-center items-center group focus-within:border-fucshia-500 hover:border-fuchsia-500 focus-within:ring-2 focus-within:ring-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+              class="rounded-lg cursor-pointer border-2 border-pink-100 bg-white px-4 py-4 shadow-sm flex flex-col justify-center items-center group focus-within:border-fucshia-500 hover:border-fuchsia-500 focus-within:ring-2 focus-within:ring-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
               data-pattern-button="true"
               data-pattern-id={key}
             >

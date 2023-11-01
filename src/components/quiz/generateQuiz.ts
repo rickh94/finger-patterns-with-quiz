@@ -1,7 +1,9 @@
-import { type QuestionInfo, type QuizSettings } from './common.ts';
-import { allPossibleQuestions } from './allQuizQuestions.ts';
+import { type QuestionInfo, type QuizSettings } from './common';
+import { allPossibleQuestions } from './allQuizQuestions';
 
-export default function generateQuiz(quizSettings: QuizSettings) {
+export default function generateQuiz(
+  quizSettings: QuizSettings
+): QuestionInfo[] {
   const questionPool: QuestionInfo[] = allPossibleQuestions.filter(
     (q) =>
       quizSettings.strings.includes(q.violinString) &&
@@ -11,8 +13,11 @@ export default function generateQuiz(quizSettings: QuizSettings) {
   const selectedQuestions = [];
   for (let i = 0; i < quizSettings.numOfQuestions; i++) {
     const randomIndex = Math.floor(Math.random() * questionPool.length);
-    selectedQuestions.push(questionPool[randomIndex]);
+    const question = questionPool[randomIndex];
+    if (!question) {
+      continue;
+    }
+    selectedQuestions.push(question);
   }
-  console.log(selectedQuestions);
   return selectedQuestions;
 }

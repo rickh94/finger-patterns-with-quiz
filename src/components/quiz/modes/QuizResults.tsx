@@ -4,9 +4,8 @@ import {
   type QuizResultsInfo,
   type QuizSettings,
   type QuestionInfo,
-  quizResultsBlank,
-} from '../common.ts';
-import generateQuiz from '../generateQuiz.ts';
+} from '../common';
+import generateQuiz from '../generateQuiz';
 // TODO: make the loading feedback a little prettier, maybe its own component
 
 type QuizResultsProps = {
@@ -89,12 +88,14 @@ export default function QuizResults({
         </div>
         <div class="flex gap-x-2">
           <button
+            type="button"
             class="rounded-lg border border-gray-300 bg-fuchsia-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
             onClick={() => newQuiz()}
           >
             New Quiz
           </button>
           <button
+            type="button"
             class="rounded-lg border border-gray-300 bg-amber-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
             onClick={() => setMode(QuizMode.Setup)}
           >
@@ -106,7 +107,7 @@ export default function QuizResults({
       <div className="grid max-w-3xl grid-cols-1 gap-8 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-gray-300 bg-white px-4 py-6 shadow-sm">
           <h3 className="text-center text-2xl font-bold">Percentage</h3>
-          <div className={'-mr-4 text-center text-8xl font-bold ' + colorClass}>
+          <div className={`-mr-4 text-center text-8xl font-bold ${colorClass}`}>
             {percentage.toFixed(0)}%
           </div>
         </div>
@@ -143,10 +144,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">E String</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.violinString.E)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.violinString.E
+            )}`}
           >
             {results.missed.violinString.E}
           </div>
@@ -154,10 +154,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">A String</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.violinString.A)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.violinString.A
+            )}`}
           >
             {results.missed.violinString.A}
           </div>
@@ -165,10 +164,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">D String</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.violinString.D)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.violinString.D
+            )}`}
           >
             {results.missed.violinString.D}
           </div>
@@ -176,10 +174,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">G String</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.violinString.G)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.violinString.G
+            )}`}
           >
             {results.missed.violinString.G}
           </div>
@@ -192,10 +189,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">1-2 Pattern</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.patternId.oneTwo)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.patternId.oneTwo
+            )}`}
           >
             {results.missed.patternId.oneTwo}
           </div>
@@ -203,10 +199,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">2-3 Pattern</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.patternId.twoThree)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.patternId.twoThree
+            )}`}
           >
             {results.missed.patternId.twoThree}
           </div>
@@ -214,10 +209,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">3-4 Pattern</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.patternId.threeFour)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.patternId.threeFour
+            )}`}
           >
             {results.missed.patternId.threeFour}
           </div>
@@ -225,10 +219,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">Whole Steps</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.patternId.wholeSteps)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.patternId.wholeSteps
+            )}`}
           >
             {results.missed.patternId.wholeSteps}
           </div>
@@ -236,10 +229,9 @@ export default function QuizResults({
         <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">Half Steps</h3>
           <div
-            className={
-              'text-center text-4xl font-bold ' +
-              itemColorClass(results.missed.patternId.halfSteps)
-            }
+            className={`text-center text-4xl font-bold ${itemColorClass(
+              results.missed.patternId.halfSteps
+            )}`}
           >
             {results.missed.patternId.halfSteps}
           </div>

@@ -2,7 +2,6 @@ import { useEffect } from 'preact/hooks';
 import { type SingleExerciseConfig } from '../common';
 import ExerciseForm from '../components/ExerciseForm';
 import patterns from '../../../patterns';
-import { Transition } from '@headlessui/react';
 import { generateExerciseConfigsFromQuery } from '../generateExercises';
 import { useAutoAnimate } from '@formkit/auto-animate/preact';
 
@@ -71,7 +70,7 @@ export default function PracticeSetup({
                         <p className="wrap-balance italic leading-6 text-gray-900">
                           Practice the{' '}
                           <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
-                            {patterns.normal[exercise.pattern].name}
+                            {patterns.normal[exercise.pattern]?.name}
                           </strong>{' '}
                           on the{' '}
                           <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">

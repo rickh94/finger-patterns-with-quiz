@@ -22,7 +22,9 @@ const { title } = Astro.props;
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="flex flex-col min-h-screen antialiased">
+  <body
+    class="flex flex-col min-h-screen antialiased bg-gradient-to-br from-fuchsia-50 to-white"
+  >
     <div class="flex-1">
       <slot />
     </div>

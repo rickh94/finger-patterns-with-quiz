@@ -37,6 +37,7 @@ export default function PracticeFinished({
           Same Patterns
         </button>
         <button
+          type="button"
           onClick={reconfigure}
           className="rounded-md bg-amber-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
         >
@@ -55,7 +56,7 @@ export default function PracticeFinished({
                 <div className="min-w-0 flex-auto">
                   <p className="wrap-balance italic leading-6 text-gray-900">
                     <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
-                      {patterns.normal[exercise.pattern].name}
+                      {patterns.normal[exercise.pattern]?.name}
                     </strong>{' '}
                     on the{' '}
                     <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">

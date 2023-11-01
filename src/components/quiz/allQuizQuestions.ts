@@ -1,4 +1,4 @@
-import { type QuestionInfo } from './common.ts';
+import { type QuestionInfo } from './common';
 export const allPossibleQuestions: QuestionInfo[] = [
   // G String
   {

@@ -1,11 +1,10 @@
 import { Fragment } from 'preact';
 import { useStore } from '@nanostores/preact';
-import { moreInfoOpen, moreInfoPatternId } from '../stores.ts';
+import { moreInfoOpen, moreInfoPatternId } from '../stores';
 import { Transition, Dialog } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import FingerDisplay from './FingerDisplay.tsx';
-import patterns from '../patterns.ts';
-// TODO: add link to exercise generator when implemented
+import FingerDisplay from './FingerDisplay';
+import patterns from '../patterns';
 
 export default function PatternInfo() {
   const $open = useStore(moreInfoOpen);
@@ -75,7 +74,7 @@ export default function PatternInfo() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="overlay fixed inset-0 bg-fuchsia-200 bg-opacity-75 transition-opacity" />
+          <div className="overlay fixed inset-0 bg-fuchsia-200/50 transition-opacity" />
         </Transition.Child>
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -91,9 +90,10 @@ export default function PatternInfo() {
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 <div class="relative z-50 flex w-full items-center justify-between">
                   <div class="text-2xl font-bold">
-                    {$patternId && patterns.normal[$patternId].name}
+                    {$patternId && patterns.normal[$patternId]?.name}
                   </div>
                   <button
+                    type="button"
                     class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus:ring-2 focus:ring-rose-500"
                     onClick={() => {
                       moreInfoOpen.set(false);
@@ -113,9 +113,11 @@ export default function PatternInfo() {
                 >
                   {$patternId && (
                     <FingerDisplay
-                      baseId={$patternId + '-pattern-more-info'}
+                      baseId={`${$patternId}-pattern-more-info`}
                       radius={2}
-                      widths={patterns.normal[$patternId].widths}
+                      widths={
+                        patterns.normal[$patternId]?.widths || [4, 4, 4, 4]
+                      }
                     />
                   )}
 

@@ -25,4 +25,8 @@
 
   # See full reference at https://devenv.sh/reference/options/
   scripts.format.exec = "prettier --write . --plugin=prettier-plugin-tailwindcss --plugin=prettier-plugin-astro";
+
+  processes = {
+    astro.exec = "npm run dev";
+  };
 }

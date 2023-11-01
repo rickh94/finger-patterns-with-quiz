@@ -5,8 +5,8 @@ import {
   type QuizResultsInfo,
   type QuizSettings,
   type PatternId,
-} from '../common.ts';
-import QuizQuestion from '../components/QuizQuestion.tsx';
+} from '../common';
+import QuizQuestion from '../components/QuizQuestion';
 
 export default function TakingQuiz({
   setMode,
@@ -25,7 +25,7 @@ export default function TakingQuiz({
   function recordAnswer(answer: PatternId) {
     setCanAdvance(true);
     setResults((oldResults: QuizResultsInfo) => {
-      if (questions[currentQuestionIdx].patternId === answer) {
+      if (questions[currentQuestionIdx]?.patternId === answer) {
         return {
           correct: oldResults.correct + 1,
           incorrect: oldResults.incorrect,
@@ -35,6 +35,9 @@ export default function TakingQuiz({
         const newMissed = oldResults.missed;
         const question = questions[currentQuestionIdx];
 
+        if (!question) {
+          return oldResults;
+        }
         newMissed.violinString[question.violinString] += 1;
         newMissed.patternId[question.patternId] += 1;
         newMissed.patternPosition[question.patternPosition] += 1;
@@ -62,7 +65,7 @@ export default function TakingQuiz({
     <>
       <QuizQuestion
         questionNumber={currentQuestionIdx + 1}
-        question={questions[currentQuestionIdx]}
+        question={questions[currentQuestionIdx]!}
         recordAnswer={recordAnswer}
         canAdvance={canAdvance}
         advanceQuestion={advanceQuestion}

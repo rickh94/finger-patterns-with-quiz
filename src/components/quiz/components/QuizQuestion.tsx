@@ -3,10 +3,10 @@ import {
   type QuestionInfo,
   type PatternId,
   type QuizSettings,
-} from '../common.ts';
-import patterns from '../../../patterns.ts';
-import FingerDisplay from '../../FingerDisplay.tsx';
-import NotesDisplay from '../../NotesDisplay.tsx';
+} from '../common';
+import patterns from '../../../patterns';
+import FingerDisplay from '../../FingerDisplay';
+import NotesDisplay from '../../NotesDisplay';
 
 type QuizQuestionProps = {
   question: QuestionInfo;
@@ -93,36 +93,43 @@ ${notes.join(' ')} |]`;
           />
         </div>
         <div class="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {Object.keys(patterns[question.patternPosition]).map((key) => (
-            <button
-              type="button"
-              className={
-                'relative flex cursor-pointer flex-col rounded-lg border bg-white p-2 text-center shadow-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-700' +
-                answerClasses(key)
-              }
-              disabled={!!selected}
-              onClick={() => handleAnswer(key)}
-            >
-              <h2 class="text-xl tracking-wide">
-                {patterns[question.patternPosition][key].name}
-                {responseText(key)}
-              </h2>
-              <FingerDisplay
-                baseId={`${questionNumber}-${key}`}
-                radius={2}
-                widths={patterns[question.patternPosition][key].widths}
-                disabled={true}
-              />
-            </button>
-          ))}
+          {Object.keys(patterns[question.patternPosition]).map((key) => {
+            const name =
+              patterns[question.patternPosition][key as PatternId]?.name;
+            const widths =
+              patterns[question.patternPosition][key as PatternId]?.widths;
+            if (!name || !widths) {
+              return null;
+            }
+
+            return (
+              <button
+                type="button"
+                className={`relative flex cursor-pointer flex-col rounded-lg border bg-white p-2 text-center shadow-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-700${answerClasses(
+                  key
+                )}`}
+                disabled={!!selected}
+                onClick={() => handleAnswer(key)}
+              >
+                <h2 class="text-xl tracking-wide">
+                  {name}
+                  {responseText(key)}
+                </h2>
+                <FingerDisplay
+                  baseId={`${questionNumber}-${key}`}
+                  radius={2}
+                  widths={widths}
+                  disabled={true}
+                />
+              </button>
+            );
+          })}
           <button
             type="button"
-            className={
-              'rounded px-4 py-2 text-2xl font-semibold text-white ' +
-              (canAdvance
+            className={`rounded px-4 py-2 text-2xl font-semibold text-white ${canAdvance
                 ? ' pointer-events-auto bg-fuchsia-600 shadow-lg hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600'
-                : ' pointer-events-none bg-gray-600')
-            }
+                : ' pointer-events-none bg-gray-600'
+              }`}
             disabled={!canAdvance}
             onClick={advanceQuestion}
           >
@@ -134,7 +141,7 @@ ${notes.join(' ')} |]`;
   );
 }
 
-function shuffle(array: string[]) {
+function shuffle(array: (string | undefined)[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
