@@ -19,10 +19,11 @@ export default function RadioBox({
   return (
     <label
       htmlFor={key}
-      className={`relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none${checked
+      className={`relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none${
+        checked
           ? ' border-fuchsia-700 ring-2 ring-fuchsia-700'
-          : ' border-gray-300'
-        }`}
+          : ' border-pink-100'
+      }`}
     >
       <input
         type="radio"
@@ -49,8 +50,9 @@ export default function RadioBox({
         aria-hidden="true"
       />
       <span
-        className={`pointer-events-none absolute -inset-px rounded-lg border-2${checked ? ' border-fuchsia-700' : ' border-gray-300'
-          }`}
+        className={`pointer-events-none absolute -inset-px rounded-lg border-2${
+          checked ? ' border-fuchsia-700' : ' border-pink-100'
+        }`}
         aria-hidden="true"
       />
     </label>

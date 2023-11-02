@@ -89,14 +89,14 @@ export default function QuizResults({
         <div class="flex gap-x-2">
           <button
             type="button"
-            class="rounded-lg border border-gray-300 bg-fuchsia-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+            class="rounded-lg border border-pink-100 bg-fuchsia-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
             onClick={() => newQuiz()}
           >
             New Quiz
           </button>
           <button
             type="button"
-            class="rounded-lg border border-gray-300 bg-amber-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            class="rounded-lg border border-pink-100 bg-amber-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
             onClick={() => setMode(QuizMode.Setup)}
           >
             Change Quiz Settings
@@ -105,14 +105,14 @@ export default function QuizResults({
       </div>
       <p class="wrap-balance mb-2 text-lg">{message}</p>
       <div className="grid max-w-3xl grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-gray-300 bg-white px-4 py-6 shadow-sm">
+        <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-pink-100 bg-white px-4 py-6 shadow-sm">
           <h3 className="text-center text-2xl font-bold">Percentage</h3>
           <div className={`-mr-4 text-center text-8xl font-bold ${colorClass}`}>
             {percentage.toFixed(0)}%
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-4 py-6 shadow-sm sm:px-12">
+        <div className="flex flex-col justify-center gap-4 rounded-lg border border-pink-100 bg-white px-4 py-6 shadow-sm sm:px-12">
           <h3 className="text-left text-2xl font-bold">Breakdown</h3>
           <table>
             <tbody>
@@ -141,7 +141,7 @@ export default function QuizResults({
 
       <div className="-mb-2 text-2xl font-bold">Mistakes By String</div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">E String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -151,7 +151,7 @@ export default function QuizResults({
             {results.missed.violinString.E}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">A String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -161,7 +161,7 @@ export default function QuizResults({
             {results.missed.violinString.A}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">D String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -171,7 +171,7 @@ export default function QuizResults({
             {results.missed.violinString.D}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-2 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-2xl font-bold">G String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -186,7 +186,7 @@ export default function QuizResults({
         Mistakes By Pattern
       </div>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-5">
-        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">1-2 Pattern</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -196,7 +196,7 @@ export default function QuizResults({
             {results.missed.patternId.oneTwo}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">2-3 Pattern</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -206,7 +206,7 @@ export default function QuizResults({
             {results.missed.patternId.twoThree}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">3-4 Pattern</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -216,7 +216,7 @@ export default function QuizResults({
             {results.missed.patternId.threeFour}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">Whole Steps</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
@@ -226,7 +226,7 @@ export default function QuizResults({
             {results.missed.patternId.wholeSteps}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-gray-300 bg-white px-2 py-4 shadow-sm">
+        <div className="col-span-1 flex flex-col justify-center gap-4 rounded-lg border border-pink-100 bg-white px-2 py-4 shadow-sm">
           <h3 className="text-center text-lg font-bold">Half Steps</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(

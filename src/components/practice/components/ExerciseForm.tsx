@@ -224,7 +224,7 @@ function ManualForm({
                 type="number"
                 name="numOfMeasures"
                 id="numOfMeasures"
-                className="relative block w-24 rounded-lg border border-gray-300 bg-white px-4 py-2 shadow-sm focus:border-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-700"
+                className="relative block w-24 rounded-lg border border-pink-100 bg-white px-4 py-2 shadow-sm focus:border-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-700"
                 value={numOfMeasures}
                 onChange={(e: any) =>
                   setNumOfMeasures(parseInt(e.target.value))
@@ -384,7 +384,7 @@ function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
               type="number"
               name="numOfMeasures"
               id="numOfMeasures"
-              className="relative block w-24 rounded-lg border border-gray-300 bg-white px-4 py-2 shadow-sm focus:border-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-700"
+              className="relative block w-24 rounded-lg border border-pink-100 bg-white px-4 py-2 shadow-sm focus:border-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-700"
               value={numOfMeasures}
               onChange={(e: any) => setNumOfMeasures(parseInt(e.target.value))}
               min={1}

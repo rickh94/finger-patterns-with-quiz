@@ -20,7 +20,7 @@ export default function ListCheckBox({
         'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none' +
         (isChecked
           ? ' border-fuchsia-700 ring-2 ring-fuchsia-700'
-          : ' border-gray-300')
+          : ' border-pink-100')
       }
     >
       <input
@@ -51,7 +51,7 @@ export default function ListCheckBox({
           'pointer-events-none absolute -inset-px rounded-lg border-2' +
           isChecked
             ? ' border-fuchsia-700'
-            : ' border-gray-300'
+            : ' border-pink-100'
         }
         aria-hidden="true"
       ></span>
