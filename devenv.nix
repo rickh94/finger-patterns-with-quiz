@@ -6,6 +6,8 @@
     pkgs.git
     pkgs.nodejs
     pkgs.nodePackages.prettier
+    pkgs.nodePackages.typescript
+    pkgs.nodePackages.typescript-language-server
     pkgs.go
   ];
 
