@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow: /all-the-patterns
 
 Sitemap: https://violinfingerpatterns.com/sitemap-index.xml
