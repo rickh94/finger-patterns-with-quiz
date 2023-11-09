@@ -17,15 +17,10 @@ export default defineConfig({
         'https://violinfingerpatterns.com/all-the-patterns/all-of-them/',
     }),
   ],
-  vite: {
-    define: {
-      'import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID': JSON.stringify(
-        process.env.VERCEL_ANALYTICS_ID
-      ),
-    },
-  },
   output: 'static',
   adapter: vercel({
-    analytics: true,
+    webAnalytics: {
+      enabled: true,
+    },
   }),
 });
