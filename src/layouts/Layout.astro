@@ -2,22 +2,46 @@
 import { ViewTransitions } from 'astro:transitions';
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL('og.png', Astro.site);
+const defaultDescription =
+  'Practice violin finger patterns with interactive diagrams, scales, exercises, and a quiz.';
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Practice violin finger patterns with interactive diagrams, scales, exercises, and a quiz."
-    />
+    <meta name="description" content={description ?? defaultDescription} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content={description ?? defaultDescription}
+    />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta
+      property="twitter:description"
+      content={description ?? defaultDescription}
+    />
+    <meta name="twitter:image" content={imageUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
     <ViewTransitions />
