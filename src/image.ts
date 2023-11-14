@@ -54,7 +54,7 @@ export function imageSiteUrl(paddingTop: number) {
         alignItems: "center",
         justifyContent: "center",
         color: "#c026d3",
-        fontSize: 32,
+        fontSize: 24,
         paddingTop,
         marginBottom: -48,
       },
