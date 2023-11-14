@@ -1,10 +1,11 @@
-import { Fragment } from 'preact';
-import { useStore } from '@nanostores/preact';
-import { moreInfoOpen, moreInfoPatternId } from '../stores';
-import { Transition, Dialog } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import FingerDisplay from './FingerDisplay';
-import patterns from '../patterns';
+import { Fragment } from "preact";
+import { useStore } from "@nanostores/preact";
+import { moreInfoOpen, moreInfoPatternId } from "~/stores";
+import { Transition, Dialog } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import FingerDisplay from "~/components/FingerDisplay";
+import patterns from "~/patterns";
+import Link from "~/components/Link";
 
 export default function PatternInfo() {
   const $open = useStore(moreInfoOpen);
@@ -12,11 +13,11 @@ export default function PatternInfo() {
 
   function patternDescription() {
     if (!$patternId) {
-      return '';
+      return "";
     }
     const desc = patterns.normal[$patternId]?.description;
     if (!desc) {
-      return '';
+      return "";
     }
     return (
       <>
@@ -29,11 +30,11 @@ export default function PatternInfo() {
 
   function patternExercises() {
     if (!$patternId) {
-      return '';
+      return "";
     }
     const exercises = patterns.normal[$patternId]?.exercises;
     if (!exercises) {
-      return '';
+      return "";
     }
     return (
       <>
@@ -41,14 +42,9 @@ export default function PatternInfo() {
         <ul>
           {exercises.map(({ name, link }: { name: string; link: string }) => (
             <li class="mb-1">
-              <a
-                href={link}
-                target="_blank"
-                rel="noreferrer noopener"
-                class="border-b-2 border-fuchsia-600 hover:text-fuchsia-600"
-              >
+              <Link href={link} external>
                 {name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -89,7 +85,7 @@ export default function PatternInfo() {
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 <div class="relative z-50 flex w-full items-center justify-between">
-                  <div class="text-2xl font-bold">
+                  <div class="flex-grow text-center text-2xl font-bold">
                     {$patternId && patterns.normal[$patternId]?.name}
                   </div>
                   <button
@@ -108,7 +104,7 @@ export default function PatternInfo() {
                   </button>
                 </div>
                 <div
-                  class="relative z-50 mx-auto mt-4 flex w-full flex-col gap-2 text-left"
+                  class="relative z-50 mx-auto mt-4 flex w-full flex-col items-center justify-center gap-2 text-left"
                   aria-label="primary"
                 >
                   {$patternId && (
@@ -121,13 +117,13 @@ export default function PatternInfo() {
                     />
                   )}
 
-                  <div class="my-2">
-                    <a
+                  <div class="flex w-full items-center justify-center pb-8">
+                    <Link
                       href={`/practice?patternId=${$patternId}`}
-                      className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+                      className="text-xl"
                     >
                       Practice Now
-                    </a>
+                    </Link>
                   </div>
                   {patternDescription()}
                   {patternExercises()}

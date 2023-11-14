@@ -1,7 +1,8 @@
-import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'preact';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import ScalesButton from './ScalesButton';
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "preact";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import ScalesButton from "~/components/ScalesButton";
+import Link from "~/components/Link";
 
 export default function IndexNavMenu() {
   return (
@@ -24,7 +25,7 @@ export default function IndexNavMenu() {
                     <Bars3Icon className="inline h-6 w-6 text-fuchsia-800 xl:hidden" />
                     <div class="sr-only">Open Nav Menu</div>
                   </>
-                )}{' '}
+                )}{" "}
               </Menu.Button>
             </div>
             <Transition
@@ -51,33 +52,20 @@ function NavLinks() {
   return (
     <>
       <div class="flex justify-end">
-        <ScalesButton className="border-b-2 border-fuchsia-600 pb-0 hover:text-fuchsia-800">
-          Scales
+        <ScalesButton>
+          <span className="border-b-2 border-fuchsia-600 pb-0 hover:text-fuchsia-800">
+            Scales
+          </span>
         </ScalesButton>
       </div>
       <div class="flex justify-end">
-        <a
-          href="/quiz"
-          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
-        >
-          Test Your Knowledge
-        </a>
+        <Link href="/quiz">Test Your Knowledge</Link>
       </div>
       <div class="flex justify-end">
-        <a
-          href="/practice"
-          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
-        >
-          Practice Playing
-        </a>
+        <Link href="/practice">Practice Playing</Link>
       </div>
       <div class="flex justify-end">
-        <a
-          href="/about"
-          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
-        >
-          About
-        </a>
+        <Link href="/about">About</Link>
       </div>
     </>
   );

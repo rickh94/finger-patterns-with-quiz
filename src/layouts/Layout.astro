@@ -1,15 +1,16 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 interface Props {
   title: string;
   description?: string;
+  imgPath?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, imgPath } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const imageUrl = new URL('og.png', Astro.site);
+const imageUrl = new URL(`${canonicalUrl}/og.png`, Astro.site);
 const defaultDescription =
-  'Practice violin finger patterns with interactive diagrams, scales, exercises, and a quiz.';
+  "Practice violin finger patterns with interactive diagrams, scales, exercises, and a quiz.";
 ---
 
 <!doctype html>
@@ -47,16 +48,16 @@ const defaultDescription =
     <ViewTransitions />
   </head>
   <body
-    class="flex flex-col min-h-screen antialiased bg-gradient-to-br from-fuchsia-50 to-white"
+    class="flex min-h-screen flex-col bg-gradient-to-br from-fuchsia-50 to-white antialiased"
   >
     <div class="flex-1">
       <slot />
     </div>
-    <footer class="w-full py-4 px-4 mt-20 place-self-end">
-      <div class="max-w-md md:max-w-3xl mx-auto w-full">
+    <footer class="mt-20 w-full place-self-end px-4 py-4">
+      <div class="mx-auto w-full max-w-md md:max-w-3xl">
         <a
           href="https://rickhenry.dev"
-          class="flex justify-center items-center"
+          class="flex items-center justify-center"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -139,7 +140,7 @@ const defaultDescription =
               xlink:href=""></path>
           </svg>
         </a>
-        <div class="text-gray-800 w-full text-center mt-2">
+        <div class="mt-2 w-full text-center text-gray-800">
           © 2023 Rick Henry Development
         </div>
       </div>
@@ -148,37 +149,37 @@ const defaultDescription =
       /* libre-baskerville-regular - latin */
       @font-face {
         font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-        font-family: 'Libre Baskerville';
+        font-family: "Libre Baskerville";
         font-style: normal;
         font-weight: 400;
-        src: url('/fonts/libre-baskerville-v14-latin-regular.woff2')
-          format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+        src: url("/fonts/libre-baskerville-v14-latin-regular.woff2")
+          format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
       }
 
       /* libre-baskerville-italic - latin */
       @font-face {
         font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-        font-family: 'Libre Baskerville';
+        font-family: "Libre Baskerville";
         font-style: italic;
         font-weight: 400;
-        src: url('/fonts/libre-baskerville-v14-latin-italic.woff2')
-          format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+        src: url("/fonts/libre-baskerville-v14-latin-italic.woff2")
+          format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
       }
 
       /* libre-baskerville-700 - latin */
       @font-face {
         font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-        font-family: 'Libre Baskerville';
+        font-family: "Libre Baskerville";
         font-style: normal;
         font-weight: 700;
-        src: url('/fonts/libre-baskerville-v14-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+        src: url("/fonts/libre-baskerville-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
       }
 
       body {
         background-color: rgba(232, 0, 255, 0.02);
       }
       * {
-        font-family: 'Libre Baskerville', serif;
+        font-family: "Libre Baskerville", serif;
       }
 
       .line {
@@ -202,7 +203,7 @@ const defaultDescription =
         font-stretch: normal;
         font-size: 5px;
         line-height: 1.25;
-        font-family: 'Libre Baskerville', serif;
+        font-family: "Libre Baskerville", serif;
         letter-spacing: 0;
         word-spacing: 0;
         fill: #000000;

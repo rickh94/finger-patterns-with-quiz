@@ -1,37 +1,37 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import NotesDisplay from '../../components/NotesDisplay.tsx';
-import FingerDisplay from '../../components/FingerDisplay.tsx';
-import { allPossibleQuestions } from '../../components/quiz/allQuizQuestions.ts';
-import patterns from '../../patterns';
+import Layout from "~/layouts/Layout.astro";
+import NotesDisplay from "~/components/NotesDisplay";
+import FingerDisplay from "~/components/FingerDisplay";
+import { allPossibleQuestions } from "~/components/quiz/allQuizQuestions";
+import patterns from "~/patterns";
 ---
 
 <Layout title="All The Patterns">
   <div class="container mx-auto px-2 font-serif">
-    <header class="mt-8 mb-4 w-full flex justify-center">
+    <header class="mb-4 mt-8 flex w-full justify-center">
       <h1
-        class="text-xl sm:text-3xl font-bold border-b-2 pb-1 px-2 border-fuchsia-600"
+        class="border-b-2 border-fuchsia-600 px-2 pb-1 text-xl font-bold sm:text-3xl"
       >
         This is all the Patterns
       </h1>
     </header>
-    <div class="flex flex-col max-w-4xl mx-auto">
-      <p class="italic mb-4">
+    <div class="mx-auto flex max-w-4xl flex-col">
+      <p class="mb-4 italic">
         This is all the patterns. This is a secret page, interactivity is
         disabled.
       </p>
     </div>
     {
       allPossibleQuestions.map((q) => (
-        <div class="flex flex-col max-w-4xl mx-auto">
+        <div class="mx-auto flex max-w-4xl flex-col">
           <h2 class="text-sm">
-            {patterns[q.patternPosition][q.patternId].name} on the{' '}
+            {patterns[q.patternPosition][q.patternId].name} on the{" "}
             {q.violinString} String ({q.patternPosition})
           </h2>
           <NotesDisplay
             client:load
             baseId={q.violinString + q.patternId + q.patternPosition}
-            notes={'L: 1/4\n' + q.notes + '|]'}
+            notes={"L: 1/4\n" + q.notes + "|]"}
             offset={0}
             disabled={true}
           />

@@ -1,10 +1,11 @@
 ---
-import NotesDisplay from '../../../components/NotesDisplay.tsx';
-import FingerDisplay from '../../../components/FingerDisplay.tsx';
-import Layout from '../../../layouts/Layout.astro';
-import ScalePicker from '../../../components/ScalePicker';
-import ScalesButton from '../../../components/ScalesButton';
-import scales from '../../../scales';
+import NotesDisplay from "~/components/NotesDisplay";
+import FingerDisplay from "~/components/FingerDisplay";
+import Layout from "~/layouts/Layout.astro";
+import ScalePicker from "~/components/ScalePicker";
+import ScalesButton from "~/components/ScalesButton";
+import scales from "~/scales";
+import Link from "~/components/Link";
 
 export function getStaticPaths() {
   return scales.map((scale) => ({
@@ -14,25 +15,26 @@ export function getStaticPaths() {
 
 const { mode, key } = Astro.params;
 const thisScale = scales.find(
-  (scale) => scale.key === key && scale.mode === mode
+  (scale) => scale.key === key && scale.mode === mode,
 );
 if (!thisScale || !thisScale.notes || !thisScale.key) {
-  return Astro.redirect('/404');
+  return Astro.redirect("/404");
 }
 ---
 
 <Layout title={thisScale.name}>
   <div class="container mx-auto px-2 font-serif">
-    <header class="mt-12 sm:mt-8 mb-4 w-full flex justify-center">
-      <ScalesButton
-        client:load
-        class="text-xl sm:text-3xl font-bold border-b-2 pb-1 px-2 border-fuchsia-600"
-      >
-        {thisScale.name}
+    <header class="mb-4 mt-12 flex w-full justify-center sm:mt-8">
+      <ScalesButton client:load>
+        <span
+          class="border-b-2 border-fuchsia-600 px-2 pb-1 text-xl font-bold sm:text-3xl"
+        >
+          {thisScale.name}
+        </span>
       </ScalesButton>
     </header>
-    <div class="flex flex-col max-w-4xl mx-auto">
-      <p class="italic mb-4">
+    <div class="mx-auto flex max-w-4xl flex-col">
+      <p class="mb-4 italic">
         This shows all the finger patterns for all the strings and the notes of
         the {thisScale.name} scale. If clicking on a finger doesn't highlight a
         note, it's either an open G or not in the scale.
@@ -45,13 +47,13 @@ if (!thisScale || !thisScale.notes || !thisScale.key) {
           offset={thisScale.offset}
         />
       </div>
-      <div class="mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+      <div class="mx-auto mt-4 grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4">
         {
           thisScale.patterns.map((pattern) => (
             <div class="flex flex-col justify-center">
               <div>
                 <h2 class="text-xl">
-                  {pattern.violinString} String —{' '}
+                  {pattern.violinString} String —{" "}
                   <em class="italic">{pattern.pattern.name}</em>
                 </h2>
                 <FingerDisplay
@@ -68,8 +70,8 @@ if (!thisScale || !thisScale.notes || !thisScale.key) {
     </div>
   </div>
 
-  <div class="absolute top-0 left-0 m-4">
-    <a href="/" class="border-b-2 border-fuchsia-600">Back Home</a>
+  <div class="absolute left-0 top-0 m-4">
+    <Link href="/" class="border-b-2 border-fuchsia-600">Back Home</Link>
   </div>
   <ScalePicker client:idle transition:name="scale-picker" />
 </Layout>

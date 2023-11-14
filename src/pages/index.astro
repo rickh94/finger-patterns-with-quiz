@@ -1,20 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import FingerDisplay from '../components/FingerDisplay';
-import ScalePicker from '../components/ScalePicker';
-import ScalesButton from '../components/ScalesButton';
-import IndexNavMenu from '../components/IndexNavMenu';
-import PatternInfo from '../components/PatternInfo';
-import patterns from '../patterns';
+import Layout from "~/layouts/Layout.astro";
+import FingerDisplay from "~/components/FingerDisplay";
+import ScalePicker from "~/components/ScalePicker";
+import ScalesButton from "~/components/ScalesButton";
+import IndexNavMenu from "~/components/IndexNavMenu";
+import PatternInfo from "~/components/PatternInfo";
+import Link from "~/components/Link";
+import patterns from "~/patterns";
+import type { PatternId } from "~/stores";
+// TODO: visual consistency
+// inprove visual consistency of titles and links. links shoudl have fuchsia underline/border, non-links should have black underline/border.
+// there should also be an indication that you can change scales by clicking on the title of a scale page
+// TODO: add better og images/tags using my og api
 ---
 
 <script>
-  import { moreInfoOpen, moreInfoPatternId, type PatternId } from '../stores';
-  import patterns from '../patterns';
+  import { moreInfoOpen, moreInfoPatternId, type PatternId } from "~/stores";
+  import patterns from "~/patterns";
 
   function showMoreInfo(button: HTMLButtonElement) {
     if (!button.dataset.patternId) {
-      console.error('missing pattern id on button');
+      console.error("missing pattern id on button");
       console.log(button);
       return;
     }
@@ -22,17 +28,17 @@ import patterns from '../patterns';
     moreInfoPatternId.set(button.dataset.patternId as PatternId);
   }
 
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener("astro:page-load", () => {
     const patternButtons = document.querySelectorAll(
-      '[data-pattern-button="true"]'
+      '[data-pattern-button="true"]',
     );
     for (let button of patternButtons) {
-      button.addEventListener('click', () =>
-        showMoreInfo(button as HTMLButtonElement)
+      button.addEventListener("click", () =>
+        showMoreInfo(button as HTMLButtonElement),
       );
     }
     const url = new URL(window.location.href);
-    const patternId = url.searchParams.get('pattern');
+    const patternId = url.searchParams.get("pattern");
     if (patternId && patternId in patterns.normal) {
       moreInfoPatternId.set(patternId as PatternId);
       moreInfoOpen.set(true);
@@ -43,65 +49,55 @@ import patterns from '../patterns';
 <Layout title="Violin Finger Patterns and Scales">
   <ScalePicker client:idle />
   <div class="container mx-auto px-2 font-serif">
-    <header class="mt-12 sm:mt-8 mb-4 w-full flex justify-center">
+    <header class="mb-4 mt-12 flex w-full justify-center sm:mt-8">
       <h1
-        class="text-xl sm:text-3xl font-bold border-b-2 pb-1 px-2 border-fuchsia-600"
+        class="border-b-2 border-fuchsia-600 px-2 pb-1 text-xl font-bold sm:text-3xl"
       >
         Violin Finger Patterns
       </h1>
     </header>
-    <div class="max-w-4xl mx-auto">
+    <div class="mx-auto max-w-4xl">
       <p class="mb-4 px-2">
         Here are the five basic finger patterns on the violin. Click one to read
         more about each one, Practice a
-        <ScalesButton
-          client:load
-          className="border-b-2 -pb-1 border-fuchsia-600 hover:text-fuchsia-800"
-        >
-          Scale
-        </ScalesButton> or
-        <a
-          href="/practice"
-          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
-          >Create Some Exercises</a
-        >
+        <ScalesButton client:load>
+          <span class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800">
+            Scale
+          </span>
+        </ScalesButton>
+         or
+        <Link href="/practice">Create Some Exercises</Link>
          to see how they work in action, or
-        <a
-          href="/quiz"
-          class="border-b-2 border-fuchsia-600 hover:text-fuchsia-800"
-        >
-          practice identifying them</a
-        > with the customizable quiz.
+        <Link href="/quiz">practice identifying them</Link> with the
+        customizable quiz.
       </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto">
-        {
-          Object.keys(patterns.normal).map((key) => (
-            <button
-              type="button"
-              class="rounded-lg cursor-pointer border-2 border-pink-100 bg-white px-4 py-4 shadow-sm flex flex-col justify-center items-center group focus-within:border-fucshia-500 hover:border-fuchsia-500 focus-within:ring-2 focus-within:ring-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
-              data-pattern-button="true"
-              data-pattern-id={key}
-            >
-              <div class="flex w-full justify-between">
-                <h2 class="text-xl tracking-wide text-left">
-                  {patterns.normal[key].name}
-                </h2>
-                <div class="text-base tracking-wide text-right text-fuchsia-700 invisible group-focus:visible group-hover:visible">
-                  More Info
-                </div>
+    </div>
+    <div class="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {
+        Object.entries(patterns.normal).map(([key, pattern]) => (
+          <button
+            type="button"
+            class="focus-within:border-fucshia-500 group flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-pink-100 bg-white px-4 py-4 shadow-sm focus-within:ring-2 focus-within:ring-fuchsia-500 hover:border-fuchsia-500 focus:border-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            data-pattern-button="true"
+            data-pattern-id={key}
+          >
+            <div class="flex w-full justify-between">
+              <h2 class="text-left text-xl tracking-wide">{pattern.name}</h2>
+              <div class="invisible text-right text-base tracking-wide text-fuchsia-700 group-hover:visible group-focus:visible">
+                More Info
               </div>
-              <FingerDisplay
-                client:load
-                baseId={key}
-                radius={2}
-                widths={patterns.normal[key].widths}
-              />
-            </button>
-          ))
-        }
-      </div>
+            </div>
+            <FingerDisplay
+              client:load
+              baseId={key}
+              radius={2}
+              widths={pattern.widths}
+            />
+          </button>
+        ))
+      }
     </div>
   </div>
-  <IndexNavMenu client:idle />
-  <PatternInfo client:load />
 </Layout>
+<IndexNavMenu client:idle />
+<PatternInfo client:load />

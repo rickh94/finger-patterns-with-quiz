@@ -1,7 +1,7 @@
-import { useStore } from '@nanostores/preact';
-import { activeFinger } from '../stores';
-import ABCJS, { type AbcElem } from 'abcjs';
-import { useEffect } from 'preact/hooks';
+import { useStore } from "@nanostores/preact";
+import { activeFinger } from "../stores";
+import ABCJS, { type AbcElem } from "abcjs";
+import { useEffect } from "preact/hooks";
 
 type NotesDisplayProps = {
   baseId: string;
@@ -14,7 +14,7 @@ type NotesDisplayProps = {
     preferredMeasuresPerLine: number;
   };
   staffwidth?: number;
-  responsive?: 'resize';
+  responsive?: "resize";
 };
 
 export default function NotesDisplay({
@@ -34,7 +34,7 @@ export default function NotesDisplay({
       return;
     }
     for (const el of abcElem.abselem.elemset) {
-      if (!el.classList.contains('abcjs-note')) {
+      if (!el.classList.contains("abcjs-note")) {
         return;
       }
       const regex = /abcjs-n(\d+)/;
@@ -78,13 +78,13 @@ export default function NotesDisplay({
     const baseId = parseInt($activeFinger.baseId, 10);
     const noteNumber = baseId * 4 + $activeFinger.num - offset;
     for (const el of document.querySelectorAll(
-      `#${notesId} .abcjs-note_selected`
+      `#${notesId} .abcjs-note_selected`,
     )) {
-      el.classList.remove('abcjs-note_selected');
+      el.classList.remove("abcjs-note_selected");
     }
     document
       .querySelector(`#${notesId} .abcjs-n${noteNumber}`)
-      ?.classList.add('abcjs-note_selected');
+      ?.classList.add("abcjs-note_selected");
   }, [$activeFinger]);
 
   return (

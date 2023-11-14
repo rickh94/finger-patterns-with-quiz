@@ -2,6 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import {
   imageFont,
   imageSiteUrl,
+  imageSubtitle,
   logoForImage,
   mainImageTitle,
   makeImage,
@@ -16,8 +17,9 @@ export async function GET() {
     return new ImageResponse(
       makeImage([
         logoForImage(),
-        mainImageTitle("Violin Finger Patterns"),
-        imageSiteUrl(48),
+        mainImageTitle("Scales with Finger Patterns"),
+        imageSubtitle("Violin Finger Patterns"),
+        imageSiteUrl(16),
       ]),
       {
         width: 1200,

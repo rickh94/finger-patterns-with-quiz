@@ -1,17 +1,27 @@
-import { Fragment } from 'preact';
-import scales, { type Scale } from '../scales';
-import { useStore } from '@nanostores/preact';
-import { scaleMenuOpen } from '../stores';
-import { useState } from 'preact/hooks';
-import { Transition, Dialog } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-// TODO: make the links look nicer/more consistent with other visual style
+import { Fragment } from "preact";
+import scales, { type Scale } from "../scales";
+import { useStore } from "@nanostores/preact";
+import { scaleMenuOpen } from "../stores";
+import { useState } from "preact/hooks";
+import { Transition, Dialog } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { cn } from "~/util";
+import Link from "~/components/Link";
+
+type Tab = {
+  name: string;
+  id: string;
+};
+
+const TABS: Tab[] = [
+  { name: "Major", id: "major" },
+  { name: "Natural Minor", id: "minor" },
+  { name: "Melodic Minor", id: "melodic" },
+];
 
 export default function ScalePicker() {
   const $scaleMenuOpen = useStore(scaleMenuOpen);
-  const [modeSelected, setModeSelected] = useState<
-    'major' | 'melodic' | 'minor'
-  >('major');
+  const [currentTab, setCurrentTab] = useState<Tab>(TABS[0]!);
 
   return (
     <Transition.Root show={$scaleMenuOpen} as={Fragment}>
@@ -53,47 +63,58 @@ export default function ScalePicker() {
                     <XMarkIcon class="h-6 w-6" />
                   </button>
                 </div>
-                <nav
-                  class="relative z-50 mx-auto mt-4 grid w-full grid-cols-2 gap-y-4 text-center"
-                  aria-label="primary"
-                >
-                  <div class="col-span-2 flex items-center justify-center">
-                    <button
-                      className={
-                        modeSelected === 'major'
-                          ? 'mr-4 border-b-2 border-fuchsia-800 text-fuchsia-800'
-                          : 'mr-4 border-b-2 border-transparent text-black'
-                      }
-                      onClick={() => setModeSelected('major')}
+
+                <div>
+                  <div className="sm:hidden">
+                    <label htmlFor="tabs" className="sr-only">
+                      Select a tab
+                    </label>
+                    {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
+                    <select
+                      id="tabs"
+                      name="tabs"
+                      className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-fuchsia-500 focus:outline-none focus:ring-fuchsia-500 sm:text-sm"
+                      defaultValue={currentTab.id}
                     >
-                      Major
-                    </button>{' '}
-                    |{' '}
-                    <button
-                      className={
-                        modeSelected === 'melodic'
-                          ? 'mx-4 border-b-2 border-fuchsia-800 text-fuchsia-800'
-                          : 'mx-4 border-b-2 border-transparent text-black'
-                      }
-                      onClick={() => setModeSelected('melodic')}
-                    >
-                      Melodic Minor
-                    </button>
-                    |{' '}
-                    <button
-                      className={
-                        modeSelected === 'minor'
-                          ? 'ml-4 border-b-2 border-fuchsia-800 text-fuchsia-800'
-                          : 'ml-4 border-b-2 border-transparent text-black'
-                      }
-                      onClick={() => setModeSelected('minor')}
-                    >
-                      Natural Minor
-                    </button>
+                      {TABS.map((tab) => (
+                        <option
+                          key={tab.id}
+                          value={tab.id}
+                          onSelect={() => setCurrentTab(tab)}
+                        >
+                          {tab.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                  {modeSelected === 'major' && <MajorScales />}
-                  {modeSelected === 'melodic' && <MelodicScales />}
-                  {modeSelected === 'minor' && <MinorScales />}
+                  <div className="hidden sm:block">
+                    <div className="border-b border-gray-200">
+                      <nav className="-mb-px flex gap-x-4" aria-label="Tabs">
+                        {TABS.map((tab) => (
+                          <button
+                            key={tab.name}
+                            onClick={() => setCurrentTab(tab)}
+                            className={cn(
+                              currentTab.id === tab.id
+                                ? "border-fuchsia-500 text-fuchsia-600"
+                                : "border-transparent text-black hover:border-fuchsia-300 hover:text-fuchsia-500",
+                              "whitespace-nowrap border-b-2 px-1 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-offset-white",
+                            )}
+                            aria-current={
+                              currentTab.id === tab.id ? "page" : undefined
+                            }
+                          >
+                            {tab.name}
+                          </button>
+                        ))}
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+                <nav className="relative z-50 mx-auto mt-4 grid w-full grid-cols-2 gap-y-4 text-left">
+                  {currentTab.id === "major" && <MajorScales />}
+                  {currentTab.id === "minor" && <MinorScales />}
+                  {currentTab.id === "melodic" && <MelodicScales />}
                 </nav>
               </Dialog.Panel>
             </Transition.Child>
@@ -109,14 +130,11 @@ function MajorScales() {
     <>
       {scales.map(
         (scale: Scale) =>
-          scale.mode == 'major' && (
-            <a
-              href={`/scales/${scale.key}/${scale.mode}`}
-              className="text-fuchsia-800 underline hover:text-fuchsia-600"
-            >
+          scale.mode == "major" && (
+            <Link href={`/scales/${scale.key}/${scale.mode}`}>
               {scale.name}
-            </a>
-          )
+            </Link>
+          ),
       )}
     </>
   );
@@ -127,14 +145,11 @@ function MinorScales() {
     <>
       {scales.map(
         (scale: Scale) =>
-          scale.mode == 'minor' && (
-            <a
-              href={`/scales/${scale.key}/${scale.mode}`}
-              className="text-fuchsia-800 underline hover:text-fuchsia-600"
-            >
+          scale.mode == "minor" && (
+            <Link href={`/scales/${scale.key}/${scale.mode}`}>
               {scale.name}
-            </a>
-          )
+            </Link>
+          ),
       )}
     </>
   );
@@ -145,14 +160,11 @@ function MelodicScales() {
     <>
       {scales.map(
         (scale: Scale) =>
-          scale.mode == 'melodic' && (
-            <a
-              href={`/scales/${scale.key}/${scale.mode}`}
-              className="text-fuchsia-800 underline hover:text-fuchsia-600"
-            >
+          scale.mode == "melodic" && (
+            <Link href={`/scales/${scale.key}/${scale.mode}`}>
               {scale.name}
-            </a>
-          )
+            </Link>
+          ),
       )}
     </>
   );
