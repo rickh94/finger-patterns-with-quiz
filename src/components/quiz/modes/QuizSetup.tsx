@@ -1,13 +1,13 @@
-import { useState } from 'preact/hooks';
+import { useState } from "preact/hooks";
 import {
   QuizMode,
   type QuizSettings,
   type QuestionInfo,
   quizDefaults,
-} from '../common.ts';
-import generateQuiz from '../generateQuiz.ts';
-import ListCheckBox from '../components/ListCheckBox.tsx';
-import RadioBox from '../components/RadioBox.tsx';
+} from "../common.ts";
+import generateQuiz from "../generateQuiz.ts";
+import ListCheckBox from "../components/ListCheckBox.tsx";
+import RadioBox from "../components/RadioBox.tsx";
 
 // TODO: fix num of questions load
 type QuizSetupProps = {
@@ -28,13 +28,13 @@ export default function QuizSetup({
   const [error, setError] = useState<string | null>(null);
   function validateQuizSettings() {
     if (quizSettings.numOfQuestions < 5) {
-      return 'Number of Questions must be at least 5';
+      return "Number of Questions must be at least 5";
     }
     if (quizSettings.strings.length === 0) {
-      return 'You must select at least one string';
+      return "You must select at least one string";
     }
     if (quizSettings.patterns.length === 0) {
-      return 'You must select at least one pattern';
+      return "You must select at least one pattern";
     }
     return null;
   }
@@ -139,52 +139,52 @@ export default function QuizSetup({
             <ListCheckBox
               text="E String"
               key="e-string"
-              isChecked={quizSettings.strings.includes('E')}
+              isChecked={quizSettings.strings.includes("E")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   strings: isChecked
-                    ? [...quizSettings.strings, 'E']
-                    : quizSettings.strings.filter((s) => s !== 'E'),
+                    ? [...quizSettings.strings, "E"]
+                    : quizSettings.strings.filter((s) => s !== "E"),
                 })
               }
             />
             <ListCheckBox
               text="A String"
               key="a-string"
-              isChecked={quizSettings.strings.includes('A')}
+              isChecked={quizSettings.strings.includes("A")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   strings: isChecked
-                    ? [...quizSettings.strings, 'A']
-                    : quizSettings.strings.filter((s) => s !== 'A'),
+                    ? [...quizSettings.strings, "A"]
+                    : quizSettings.strings.filter((s) => s !== "A"),
                 })
               }
             />
             <ListCheckBox
               text="D String"
               key="d-string"
-              isChecked={quizSettings.strings.includes('D')}
+              isChecked={quizSettings.strings.includes("D")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   strings: isChecked
-                    ? [...quizSettings.strings, 'D']
-                    : quizSettings.strings.filter((s) => s !== 'D'),
+                    ? [...quizSettings.strings, "D"]
+                    : quizSettings.strings.filter((s) => s !== "D"),
                 })
               }
             />
             <ListCheckBox
               text="G String"
               key="g-string"
-              isChecked={quizSettings.strings.includes('G')}
+              isChecked={quizSettings.strings.includes("G")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   strings: isChecked
-                    ? [...quizSettings.strings, 'G']
-                    : quizSettings.strings.filter((s) => s !== 'G'),
+                    ? [...quizSettings.strings, "G"]
+                    : quizSettings.strings.filter((s) => s !== "G"),
                 })
               }
             />
@@ -198,65 +198,65 @@ export default function QuizSetup({
             <ListCheckBox
               text="1-2 Pattern"
               key="one-two-pattern"
-              isChecked={quizSettings.patterns.includes('oneTwo')}
+              isChecked={quizSettings.patterns.includes("oneTwo")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   patterns: isChecked
-                    ? [...quizSettings.patterns, 'oneTwo']
-                    : quizSettings.patterns.filter((s) => s !== 'oneTwo'),
+                    ? [...quizSettings.patterns, "oneTwo"]
+                    : quizSettings.patterns.filter((s) => s !== "oneTwo"),
                 })
               }
             />
             <ListCheckBox
               text="2-3 Pattern"
               key="two-three-pattern"
-              isChecked={quizSettings.patterns.includes('twoThree')}
+              isChecked={quizSettings.patterns.includes("twoThree")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   patterns: isChecked
-                    ? [...quizSettings.patterns, 'twoThree']
-                    : quizSettings.patterns.filter((s) => s !== 'twoThree'),
+                    ? [...quizSettings.patterns, "twoThree"]
+                    : quizSettings.patterns.filter((s) => s !== "twoThree"),
                 })
               }
             />
             <ListCheckBox
               text="3-4 Pattern"
               key="three-four-pattern"
-              isChecked={quizSettings.patterns.includes('threeFour')}
+              isChecked={quizSettings.patterns.includes("threeFour")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   patterns: isChecked
-                    ? [...quizSettings.patterns, 'threeFour']
-                    : quizSettings.patterns.filter((s) => s !== 'threeFour'),
+                    ? [...quizSettings.patterns, "threeFour"]
+                    : quizSettings.patterns.filter((s) => s !== "threeFour"),
                 })
               }
             />
             <ListCheckBox
               text="Whole Steps Pattern"
               key="whole-steps-pattern"
-              isChecked={quizSettings.patterns.includes('wholeSteps')}
+              isChecked={quizSettings.patterns.includes("wholeSteps")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   patterns: isChecked
-                    ? [...quizSettings.patterns, 'wholeSteps']
-                    : quizSettings.patterns.filter((s) => s !== 'wholeSteps'),
+                    ? [...quizSettings.patterns, "wholeSteps"]
+                    : quizSettings.patterns.filter((s) => s !== "wholeSteps"),
                 })
               }
             />
             <ListCheckBox
               text="Half Steps Pattern"
               key="half-steps-pattern"
-              isChecked={quizSettings.patterns.includes('halfSteps')}
+              isChecked={quizSettings.patterns.includes("halfSteps")}
               setIsChecked={(isChecked: boolean) =>
                 setQuizSettings({
                   ...quizSettings,
                   patterns: isChecked
-                    ? [...quizSettings.patterns, 'halfSteps']
-                    : quizSettings.patterns.filter((s) => s !== 'halfSteps'),
+                    ? [...quizSettings.patterns, "halfSteps"]
+                    : quizSettings.patterns.filter((s) => s !== "halfSteps"),
                 })
               }
             />

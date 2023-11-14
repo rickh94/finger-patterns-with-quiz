@@ -1,4 +1,4 @@
-import { CheckCircleIcon } from '@heroicons/react/20/solid';
+import { CheckCircleIcon } from "@heroicons/react/20/solid";
 type RadioBoxProps = {
   key: string;
   value: string | number;
@@ -21,8 +21,8 @@ export default function RadioBox({
       htmlFor={key}
       className={`relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none${
         checked
-          ? ' border-fuchsia-700 ring-2 ring-fuchsia-700'
-          : ' border-pink-100'
+          ? " border-fuchsia-700 ring-2 ring-fuchsia-700"
+          : " border-pink-100"
       }`}
     >
       <input
@@ -46,12 +46,12 @@ export default function RadioBox({
         </span>
       </span>
       <CheckCircleIcon
-        className={`h-5 w-5 text-fuchsia-700${checked ? '' : ' invisible'}`}
+        className={`h-5 w-5 text-fuchsia-700${checked ? "" : " invisible"}`}
         aria-hidden="true"
       />
       <span
         className={`pointer-events-none absolute -inset-px rounded-lg border-2${
-          checked ? ' border-fuchsia-700' : ' border-pink-100'
+          checked ? " border-fuchsia-700" : " border-pink-100"
         }`}
         aria-hidden="true"
       />

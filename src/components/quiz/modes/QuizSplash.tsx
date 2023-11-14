@@ -1,5 +1,5 @@
-import { QuizMode, type QuizSettings, type QuestionInfo } from '../common.ts';
-import generateQuiz from '../generateQuiz.ts';
+import { QuizMode, type QuizSettings, type QuestionInfo } from "../common.ts";
+import generateQuiz from "../generateQuiz.ts";
 
 type QuizSplashProps = {
   setMode: (mode: QuizMode) => void;

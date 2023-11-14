@@ -5,14 +5,14 @@ export enum QuizMode {
   Taking,
 }
 
-export type ViolinString = 'E' | 'A' | 'D' | 'G';
+export type ViolinString = "E" | "A" | "D" | "G";
 export type PatternId =
-  | 'oneTwo'
-  | 'twoThree'
-  | 'threeFour'
-  | 'wholeSteps'
-  | 'halfSteps';
-export type PatternPosition = 'low' | 'normal' | 'high';
+  | "oneTwo"
+  | "twoThree"
+  | "threeFour"
+  | "wholeSteps"
+  | "halfSteps";
+export type PatternPosition = "low" | "normal" | "high";
 
 export type QuizSettings = {
   numOfQuestions: number;
@@ -57,8 +57,8 @@ export type QuizResultsInfo = {
 
 export const quizDefaults: QuizSettings = {
   numOfQuestions: 10,
-  strings: ['E', 'A', 'D', 'G'],
-  patterns: ['oneTwo', 'twoThree', 'threeFour', 'wholeSteps', 'halfSteps'],
+  strings: ["E", "A", "D", "G"],
+  patterns: ["oneTwo", "twoThree", "threeFour", "wholeSteps", "halfSteps"],
   inOrder: true,
   difficulty: 3,
 };

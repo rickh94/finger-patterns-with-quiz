@@ -1,5 +1,5 @@
-import type { SingleExerciseConfig } from '../common';
-import patterns from '../../../patterns';
+import type { SingleExerciseConfig } from "../common";
+import patterns from "../../../patterns";
 
 type PracticeFinishedProps = {
   restart: () => void;
@@ -57,12 +57,12 @@ export default function PracticeFinished({
                   <p className="wrap-balance italic leading-6 text-gray-900">
                     <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                       {patterns.normal[exercise.pattern]?.name}
-                    </strong>{' '}
-                    on the{' '}
+                    </strong>{" "}
+                    on the{" "}
                     <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                       {exercise.violinString} String
-                    </strong>{' '}
-                    in the{' '}
+                    </strong>{" "}
+                    in the{" "}
                     <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                       {exercise.position} position
                     </strong>
@@ -70,7 +70,7 @@ export default function PracticeFinished({
                 </div>
               </div>
             </li>
-          )
+          ),
       )}
     </div>
   );

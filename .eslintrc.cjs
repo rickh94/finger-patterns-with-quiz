@@ -13,7 +13,6 @@ const config = {
   },
   plugins: ["@typescript-eslint"],
   extends: [
-    "eslint-config-astro",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
   ],

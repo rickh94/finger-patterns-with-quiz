@@ -1,12 +1,12 @@
-import { useState } from 'preact/hooks';
+import { useState } from "preact/hooks";
 import {
   QuizMode,
   type QuestionInfo,
   type QuizResultsInfo,
   type QuizSettings,
   type PatternId,
-} from '../common';
-import QuizQuestion from '../components/QuizQuestion';
+} from "../common";
+import QuizQuestion from "../components/QuizQuestion";
 
 export default function TakingQuiz({
   setMode,

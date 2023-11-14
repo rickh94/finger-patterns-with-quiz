@@ -1,14 +1,14 @@
-import { type QuestionInfo, type QuizSettings } from './common';
-import { allPossibleQuestions } from './allQuizQuestions';
+import { type QuestionInfo, type QuizSettings } from "./common";
+import { allPossibleQuestions } from "./allQuizQuestions";
 
 export default function generateQuiz(
-  quizSettings: QuizSettings
+  quizSettings: QuizSettings,
 ): QuestionInfo[] {
   const questionPool: QuestionInfo[] = allPossibleQuestions.filter(
     (q) =>
       quizSettings.strings.includes(q.violinString) &&
       quizSettings.patterns.includes(q.patternId) &&
-      q.difficulty <= quizSettings.difficulty
+      q.difficulty <= quizSettings.difficulty,
   );
   const selectedQuestions = [];
   for (let i = 0; i < quizSettings.numOfQuestions; i++) {

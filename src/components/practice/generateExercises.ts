@@ -1,10 +1,10 @@
-import type { SingleExerciseConfig, PatternId } from './common';
-import patternStringNotes from './patternStringNotes';
+import type { SingleExerciseConfig, PatternId } from "./common";
+import patternStringNotes from "./patternStringNotes";
 
 const stringToABCMap = {
-  G: 'G,',
-  D: 'D',
-  A: 'A',
+  G: "G,",
+  D: "D",
+  A: "A",
   E: "E'",
 };
 
@@ -30,17 +30,17 @@ K: Cmaj
     lastLastNoteIdx = lastNoteIdx;
     lastNoteIdx = randomIndex;
     if (i !== 0 && i % 4 === 0) {
-      exerciseNotes += ' | ';
+      exerciseNotes += " | ";
     }
     exerciseNotes += availableNotes[randomIndex];
-    exerciseNotes += ' ';
+    exerciseNotes += " ";
   }
-  exerciseNotes += '|]';
+  exerciseNotes += "|]";
   return exerciseNotes;
 }
 
 export default function generateExercises(
-  exerciseConfigs: SingleExerciseConfig[]
+  exerciseConfigs: SingleExerciseConfig[],
 ): string[] {
   const exercises = [];
   for (let config of exerciseConfigs) {
@@ -52,44 +52,44 @@ export default function generateExercises(
 export function generateExerciseConfigsFromQuery(): SingleExerciseConfig[] {
   // get the pattern id from the window url query string
   const patternId = new URLSearchParams(window.location.search).get(
-    'patternId'
+    "patternId",
   );
   if (!patternId) {
     return [];
   } else if (
-    !['oneTwo', 'twoThree', 'threeFour', 'wholeSteps', 'halfSteps'].includes(
-      patternId
+    !["oneTwo", "twoThree", "threeFour", "wholeSteps", "halfSteps"].includes(
+      patternId,
     )
   ) {
-    console.error('invalid query string');
+    console.error("invalid query string");
     return [];
   } else {
     return [
       {
-        violinString: 'E',
+        violinString: "E",
         pattern: patternId as PatternId,
-        position: 'normal',
+        position: "normal",
         numOfMeasures: 4,
         includeOpen: true,
       },
       {
-        violinString: 'A',
+        violinString: "A",
         pattern: patternId as PatternId,
-        position: 'normal',
+        position: "normal",
         numOfMeasures: 4,
         includeOpen: true,
       },
       {
-        violinString: 'D',
+        violinString: "D",
         pattern: patternId as PatternId,
-        position: 'normal',
+        position: "normal",
         numOfMeasures: 4,
         includeOpen: true,
       },
       {
-        violinString: 'G',
+        violinString: "G",
         pattern: patternId as PatternId,
-        position: 'normal',
+        position: "normal",
         numOfMeasures: 4,
         includeOpen: true,
       },

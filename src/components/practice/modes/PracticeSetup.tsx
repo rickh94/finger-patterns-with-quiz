@@ -1,9 +1,9 @@
-import { useEffect } from 'preact/hooks';
-import { type SingleExerciseConfig } from '../common';
-import ExerciseForm from '../components/ExerciseForm';
-import patterns from '../../../patterns';
-import { generateExerciseConfigsFromQuery } from '../generateExercises';
-import { useAutoAnimate } from '@formkit/auto-animate/preact';
+import { useEffect } from "preact/hooks";
+import { type SingleExerciseConfig } from "../common";
+import ExerciseForm from "../components/ExerciseForm";
+import patterns from "../../../patterns";
+import { generateExerciseConfigsFromQuery } from "../generateExercises";
+import { useAutoAnimate } from "@formkit/auto-animate/preact";
 
 // TODO: add exercise added pop up with jump link arrow
 // TODO: add transition between tabs
@@ -12,7 +12,7 @@ type PracticeSetupProps = {
   startPracticing: () => void;
   exerciseConfigs: SingleExerciseConfig[];
   setExerciseConfigs: (
-    f: (exerciseConfigs: SingleExerciseConfig[]) => SingleExerciseConfig[]
+    f: (exerciseConfigs: SingleExerciseConfig[]) => SingleExerciseConfig[],
   ) => void;
   clear: () => void;
 };
@@ -26,7 +26,7 @@ export default function PracticeSetup({
   function addExerciseConfig(exercise: SingleExerciseConfig) {
     exercise.id = Math.floor(Math.random() * 1000000);
     setExerciseConfigs((configs: SingleExerciseConfig[]) =>
-      configs.concat([exercise])
+      configs.concat([exercise]),
     );
   }
 
@@ -35,7 +35,7 @@ export default function PracticeSetup({
       return;
     }
     setExerciseConfigs((configs: SingleExerciseConfig[]) =>
-      configs.filter((ex: SingleExerciseConfig) => ex.id !== deleteId)
+      configs.filter((ex: SingleExerciseConfig) => ex.id !== deleteId),
     );
   }
 
@@ -49,7 +49,7 @@ export default function PracticeSetup({
   }, []);
   const [parent] = useAutoAnimate();
 
-  useEffect(() => { }, [exerciseConfigs]);
+  useEffect(() => {}, [exerciseConfigs]);
 
   return (
     <>
@@ -68,19 +68,19 @@ export default function PracticeSetup({
                     <div className="flex min-w-0 gap-x-4">
                       <div className="min-w-0 flex-auto">
                         <p className="wrap-balance italic leading-6 text-gray-900">
-                          Practice the{' '}
+                          Practice the{" "}
                           <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                             {patterns.normal[exercise.pattern]?.name}
-                          </strong>{' '}
-                          on the{' '}
+                          </strong>{" "}
+                          on the{" "}
                           <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                             {exercise.violinString} String
-                          </strong>{' '}
-                          in the{' '}
+                          </strong>{" "}
+                          in the{" "}
                           <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                             {exercise.position} position
-                          </strong>{' '}
-                          for{' '}
+                          </strong>{" "}
+                          for{" "}
                           <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
                             {exercise.numOfMeasures} measures
                           </strong>
@@ -95,7 +95,7 @@ export default function PracticeSetup({
                       Delete
                     </button>
                   </li>
-                )
+                ),
             )}
           </ul>
           {exerciseConfigs.length !== 0 && (

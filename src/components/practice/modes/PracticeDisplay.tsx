@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'preact/hooks';
-import NotesDisplay from '../../NotesDisplay';
-import FingerDisplay from '../../FingerDisplay';
-import type { SingleExerciseConfig } from '../common';
-import patterns from '../../../patterns';
+import { useState, useEffect } from "preact/hooks";
+import NotesDisplay from "../../NotesDisplay";
+import FingerDisplay from "../../FingerDisplay";
+import type { SingleExerciseConfig } from "../common";
+import patterns from "../../../patterns";
 
 // TODO: display sevcik rhythm patterns
 
@@ -49,18 +49,18 @@ export default function PracticeDisplay({
   return (
     <>
       <h2 className="text-lg leading-6 text-gray-900">
-        Practicing the{' '}
+        Practicing the{" "}
         <em class="font-bold italic text-fuchsia-700">
           {patterns.normal[exerciseConfig.pattern]?.name}
-        </em>{' '}
-        on the{' '}
+        </em>{" "}
+        on the{" "}
         <em class="font-bold italic text-fuchsia-700">
           {exerciseConfig.violinString} String
-        </em>{' '}
-        in the{' '}
+        </em>{" "}
+        in the{" "}
         <em class="font-bold italic text-fuchsia-700">
           {exerciseConfig.position} position
-        </em>{' '}
+        </em>{" "}
         for {exerciseConfig.numOfMeasures} measures
       </h2>
       <FingerDisplay
@@ -74,9 +74,10 @@ export default function PracticeDisplay({
         disabled={true}
       />
       <NotesDisplay
-        baseId={`exercise-${exerciseConfigs[currentExerciseIdx]?.id ?? genRandomId()
-          }`}
-        notes={exercises[currentExerciseIdx] ?? ''}
+        baseId={`exercise-${
+          exerciseConfigs[currentExerciseIdx]?.id ?? genRandomId()
+        }`}
+        notes={exercises[currentExerciseIdx] ?? ""}
         offset={0}
         disabled={true}
         wrap={{

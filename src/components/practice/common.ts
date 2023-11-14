@@ -1,17 +1,17 @@
 export enum PracticeMode {
-  Setup = 'SETUP',
-  Display = 'DISPLAY',
-  Finished = 'FINISHED',
+  Setup = "SETUP",
+  Display = "DISPLAY",
+  Finished = "FINISHED",
 }
 
-export type ViolinString = 'E' | 'A' | 'D' | 'G';
+export type ViolinString = "E" | "A" | "D" | "G";
 export type PatternId =
-  | 'oneTwo'
-  | 'twoThree'
-  | 'threeFour'
-  | 'wholeSteps'
-  | 'halfSteps';
-export type PatternPosition = 'low' | 'normal' | 'high';
+  | "oneTwo"
+  | "twoThree"
+  | "threeFour"
+  | "wholeSteps"
+  | "halfSteps";
+export type PatternPosition = "low" | "normal" | "high";
 
 export type SingleExerciseConfig = {
   violinString: ViolinString;

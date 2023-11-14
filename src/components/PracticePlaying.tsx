@@ -1,9 +1,9 @@
-import { PracticeMode, type SingleExerciseConfig } from './practice/common';
-import PracticeSetup from './practice/modes/PracticeSetup';
-import PracticeFinished from './practice/modes/PracticeFinished';
-import PracticeDisplay from './practice/modes/PracticeDisplay';
-import { useState } from 'preact/hooks';
-import generateExercises from './practice/generateExercises';
+import { PracticeMode, type SingleExerciseConfig } from "./practice/common";
+import PracticeSetup from "./practice/modes/PracticeSetup";
+import PracticeFinished from "./practice/modes/PracticeFinished";
+import PracticeDisplay from "./practice/modes/PracticeDisplay";
+import { useState } from "preact/hooks";
+import generateExercises from "./practice/generateExercises";
 
 export default function Quiz() {
   const [mode, setMode] = useState<PracticeMode>(PracticeMode.Setup);

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect } from "preact/hooks";
 import {
   QuizMode,
   type QuizResultsInfo,
   type QuizSettings,
   type QuestionInfo,
-} from '../common';
-import generateQuiz from '../generateQuiz';
+} from "../common";
+import generateQuiz from "../generateQuiz";
 // TODO: make the loading feedback a little prettier, maybe its own component
 
 type QuizResultsProps = {
@@ -24,21 +24,21 @@ export default function QuizResults({
   clearResults,
 }: QuizResultsProps) {
   const [percentage, setPercentage] = useState(0);
-  const [colorClass, setColorClass] = useState('');
-  const [message, setMessage] = useState('Loading Feedback...');
+  const [colorClass, setColorClass] = useState("");
+  const [message, setMessage] = useState("Loading Feedback...");
   useEffect(() => {
     setPercentage((results.correct / quizSettings.numOfQuestions) * 100);
     if (percentage >= 79.9) {
-      setColorClass('text-emerald-500');
+      setColorClass("text-emerald-500");
     } else if (percentage >= 49.9) {
-      setColorClass('text-amber-500');
+      setColorClass("text-amber-500");
     } else {
-      setColorClass('text-rose-500');
+      setColorClass("text-rose-500");
     }
-    fetch('/api/feedback', {
-      method: 'POST',
+    fetch("/api/feedback", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(results),
     })
@@ -51,22 +51,22 @@ export default function QuizResults({
         if (text) {
           setMessage(text);
         } else {
-          setMessage('Something went wrong.');
+          setMessage("Something went wrong.");
         }
       })
       .catch((err) => {
         console.error(err);
-        setMessage('Something went wrong.');
+        setMessage("Something went wrong.");
       });
   }, [results, quizSettings]);
 
   function itemColorClass(mistakes: number) {
     if (mistakes > 2) {
-      return 'text-rose-500';
+      return "text-rose-500";
     } else if (mistakes > 0) {
-      return 'text-amber-500';
+      return "text-amber-500";
     } else {
-      return 'text-emerald-500';
+      return "text-emerald-500";
     }
   }
 
@@ -145,7 +145,7 @@ export default function QuizResults({
           <h3 className="text-center text-2xl font-bold">E String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.violinString.E
+              results.missed.violinString.E,
             )}`}
           >
             {results.missed.violinString.E}
@@ -155,7 +155,7 @@ export default function QuizResults({
           <h3 className="text-center text-2xl font-bold">A String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.violinString.A
+              results.missed.violinString.A,
             )}`}
           >
             {results.missed.violinString.A}
@@ -165,7 +165,7 @@ export default function QuizResults({
           <h3 className="text-center text-2xl font-bold">D String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.violinString.D
+              results.missed.violinString.D,
             )}`}
           >
             {results.missed.violinString.D}
@@ -175,7 +175,7 @@ export default function QuizResults({
           <h3 className="text-center text-2xl font-bold">G String</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.violinString.G
+              results.missed.violinString.G,
             )}`}
           >
             {results.missed.violinString.G}
@@ -190,7 +190,7 @@ export default function QuizResults({
           <h3 className="text-center text-lg font-bold">1-2 Pattern</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.patternId.oneTwo
+              results.missed.patternId.oneTwo,
             )}`}
           >
             {results.missed.patternId.oneTwo}
@@ -200,7 +200,7 @@ export default function QuizResults({
           <h3 className="text-center text-lg font-bold">2-3 Pattern</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.patternId.twoThree
+              results.missed.patternId.twoThree,
             )}`}
           >
             {results.missed.patternId.twoThree}
@@ -210,7 +210,7 @@ export default function QuizResults({
           <h3 className="text-center text-lg font-bold">3-4 Pattern</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.patternId.threeFour
+              results.missed.patternId.threeFour,
             )}`}
           >
             {results.missed.patternId.threeFour}
@@ -220,7 +220,7 @@ export default function QuizResults({
           <h3 className="text-center text-lg font-bold">Whole Steps</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.patternId.wholeSteps
+              results.missed.patternId.wholeSteps,
             )}`}
           >
             {results.missed.patternId.wholeSteps}
@@ -230,7 +230,7 @@ export default function QuizResults({
           <h3 className="text-center text-lg font-bold">Half Steps</h3>
           <div
             className={`text-center text-4xl font-bold ${itemColorClass(
-              results.missed.patternId.halfSteps
+              results.missed.patternId.halfSteps,
             )}`}
           >
             {results.missed.patternId.halfSteps}

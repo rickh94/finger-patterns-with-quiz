@@ -5,12 +5,12 @@ import {
   type QuizResultsInfo,
   quizDefaults,
   quizResultsBlank,
-} from './quiz/common.ts';
-import QuizSetup from './quiz/modes/QuizSetup.tsx';
-import QuizResults from './quiz/modes/QuizResults.tsx';
-import TakingQuiz from './quiz/modes/TakingQuiz.tsx';
-import QuizSplash from './quiz/modes/QuizSplash.tsx';
-import { useState } from 'preact/hooks';
+} from "./quiz/common.ts";
+import QuizSetup from "./quiz/modes/QuizSetup.tsx";
+import QuizResults from "./quiz/modes/QuizResults.tsx";
+import TakingQuiz from "./quiz/modes/TakingQuiz.tsx";
+import QuizSplash from "./quiz/modes/QuizSplash.tsx";
+import { useState } from "preact/hooks";
 
 export default function Quiz() {
   const [mode, setMode] = useState<QuizMode>(QuizMode.Splash);

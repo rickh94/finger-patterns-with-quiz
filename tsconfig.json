@@ -1,6 +1,4 @@
-
 {
-
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "target": "es2017",
@@ -25,7 +23,7 @@
       "~/*": ["src/*"],
       "@components": ["src/components/*"]
     },
-    "plugins": [{ "name": "@astrojs/ts-plugin"}]
+    "plugins": [{ "name": "@astrojs/ts-plugin" }]
   },
   "include": [
     ".eslintrc.cjs",
@@ -34,7 +32,7 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "**/*.astro",
+    "**/*.astro"
   ],
   "exclude": ["node_modules"]
 }

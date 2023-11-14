@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect } from "preact/hooks";
 import {
   type QuestionInfo,
   type PatternId,
   type QuizSettings,
-} from '../common';
-import patterns from '../../../patterns';
-import FingerDisplay from '../../FingerDisplay';
-import NotesDisplay from '../../NotesDisplay';
+} from "../common";
+import patterns from "../../../patterns";
+import FingerDisplay from "../../FingerDisplay";
+import NotesDisplay from "../../NotesDisplay";
 
 type QuizQuestionProps = {
   question: QuestionInfo;
@@ -38,19 +38,19 @@ export default function QuizQuestion({
 
   function answerClasses(key: string) {
     if (!selected) {
-      return '';
+      return "";
     }
     if (key === question.patternId) {
-      return ' ring-2 ring-emerald-700 border-emerald-700';
+      return " ring-2 ring-emerald-700 border-emerald-700";
     }
     if (selected === key) {
-      return ' ring-2 ring-rose-700 border-rose-700';
+      return " ring-2 ring-rose-700 border-rose-700";
     }
   }
 
   function responseText(key: string) {
     if (!selected) {
-      return '';
+      return "";
     }
     if (selected === key && key === question.patternId) {
       return <span class="font-bold text-emerald-700"> — Correct!</span>;
@@ -69,10 +69,10 @@ export default function QuizQuestion({
 L: 1/4
 ${question.notes} |]`;
     } else {
-      const notes = shuffle(question.notes.split(' '));
+      const notes = shuffle(question.notes.split(" "));
       return `K: Cmaj
 L: 1/4
-${notes.join(' ')} |]`;
+${notes.join(" ")} |]`;
     }
   }
 
@@ -106,7 +106,7 @@ ${notes.join(' ')} |]`;
               <button
                 type="button"
                 className={`relative flex cursor-pointer flex-col rounded-lg border bg-white p-2 text-center shadow-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-700${answerClasses(
-                  key
+                  key,
                 )}`}
                 disabled={!!selected}
                 onClick={() => handleAnswer(key)}
@@ -126,10 +126,11 @@ ${notes.join(' ')} |]`;
           })}
           <button
             type="button"
-            className={`rounded px-4 py-2 text-2xl font-semibold text-white ${canAdvance
-                ? ' pointer-events-auto bg-fuchsia-600 shadow-lg hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600'
-                : ' pointer-events-none bg-gray-600'
-              }`}
+            className={`rounded px-4 py-2 text-2xl font-semibold text-white ${
+              canAdvance
+                ? " pointer-events-auto bg-fuchsia-600 shadow-lg hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+                : " pointer-events-none bg-gray-600"
+            }`}
             disabled={!canAdvance}
             onClick={advanceQuestion}
           >
