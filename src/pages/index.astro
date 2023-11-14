@@ -56,7 +56,7 @@ import type { PatternId } from "~/stores";
         Violin Finger Patterns
       </h1>
     </header>
-    <div class="mx-auto max-w-4xl">
+    <div class="mx-auto sm:max-w-4xl">
       <p class="mb-4 px-2">
         Here are the five basic finger patterns on the violin. Click one to read
         more about each one, Practice a
@@ -72,7 +72,7 @@ import type { PatternId } from "~/stores";
         customizable quiz.
       </p>
     </div>
-    <div class="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div class="mx-auto grid grid-cols-1 gap-4 sm:max-w-4xl sm:grid-cols-2">
       {
         Object.entries(patterns.normal).map(([key, pattern]) => (
           <button
