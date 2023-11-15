@@ -9,6 +9,7 @@
     pkgs.nodePackages.typescript
     pkgs.nodePackages.typescript-language-server
     pkgs.go
+    pkgs.bun
   ];
 
   languages.javascript.enable = true;
