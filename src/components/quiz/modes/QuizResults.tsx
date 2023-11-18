@@ -26,9 +26,12 @@ export default function QuizResults({
   const [percentage, setPercentage] = useState(0);
   const [colorClass, setColorClass] = useState("");
   const [message, setMessage] = useState("Loading Feedback...");
+
   useEffect(() => {
-    setPercentage((results.correct / quizSettings.numOfQuestions) * 100);
-    if (percentage >= 79.9) {
+    const nextPercentage =
+      (results.correct / quizSettings.numOfQuestions) * 100;
+    setPercentage(nextPercentage);
+    if (nextPercentage >= 79.9) {
       setColorClass("text-emerald-500");
     } else if (percentage >= 49.9) {
       setColorClass("text-amber-500");
@@ -58,7 +61,7 @@ export default function QuizResults({
         console.error(err);
         setMessage("Something went wrong.");
       });
-  }, [results, quizSettings]);
+  }, [results, quizSettings, setPercentage, setMessage, setColorClass]);
 
   function itemColorClass(mistakes: number) {
     if (mistakes > 2) {
