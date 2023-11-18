@@ -1,10 +1,6 @@
 {
   "name": "api",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "latest"
-  },
+  "entrypoint": "index.ts",
   "peerDependencies": {
     "typescript": "^5.0.0"
   },

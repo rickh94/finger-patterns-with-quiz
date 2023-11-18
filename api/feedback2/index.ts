@@ -9,6 +9,7 @@ const openai = new OpenAI({
 export const config = {
   runtime: "edge",
 };
+export const runtime = "experimental-edge";
 
 export default async function handler(request: Request) {
   const { correct, incorrect, missed } = await request.json();
