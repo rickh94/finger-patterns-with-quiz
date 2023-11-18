@@ -1,4 +1,3 @@
-import type { APIRoute } from "astro";
 import OpenAI from "openai";
 
 // Create an OpenAI API client (that's edge friendly!)
@@ -11,7 +10,7 @@ export const config = {
   runtime: "edge",
 };
 
-export const POST: APIRoute = async function ({ request }) {
+export default async function handler(request: Request) {
   const { correct, incorrect, missed } = await request.json();
   const violinStrings = [];
 
@@ -70,4 +69,4 @@ Write at most 3 short sentences.
       },
     },
   );
-};
+}

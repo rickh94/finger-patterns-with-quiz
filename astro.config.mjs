@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import preact from "@astrojs/preact";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/static";
 
 import sitemap from "@astrojs/sitemap";
 
@@ -18,7 +18,7 @@ export default defineConfig({
         "https://violinfingerpatterns.com/all-the-patterns/all-of-them/",
     }),
   ],
-  output: "hybrid",
+  output: "static",
   adapter: vercel({
     webAnalytics: {
       enabled: true,
