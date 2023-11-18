@@ -7,7 +7,9 @@ const openai = new OpenAI({
 });
 
 // Set the runtime to edge for best performance
-export const runtime = "experimental-edge";
+export const config = {
+  runtime: "edge",
+};
 
 export const POST: APIRoute = async function ({ request }) {
   const { correct, incorrect, missed } = await request.json();
