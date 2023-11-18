@@ -65,7 +65,7 @@ func FeedbackHandler(w http.ResponseWriter, r *http.Request) {
 	client := openai.NewClient(apiKey)
 
 	percentage := (quizResults.Correct / (quizResults.Correct + quizResults.Incorrect)) * 100
-	prompt := fmt.Sprintf("Write a short, simple, positive message giving based on a quiz score of %.0f percent. "+
+	prompt := fmt.Sprintf("Write a short, simple, positive message giving feedback based on a quiz score of %.0f percent. "+
 		"It should be more positive the better the score. "+
 		"No need to thank the user. "+
 		" then tell the user they need to practice more on the following, based on the items in the bracketed lists: "+

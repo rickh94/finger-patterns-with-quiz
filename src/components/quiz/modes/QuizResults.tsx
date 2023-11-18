@@ -35,7 +35,7 @@ export default function QuizResults({
     } else {
       setColorClass("text-rose-500");
     }
-    fetch("/api/feedback", {
+    fetch("/api/feedback2", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
