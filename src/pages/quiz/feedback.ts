@@ -1,3 +1,4 @@
+import type { APIRoute } from "astro";
 import OpenAI from "openai";
 
 // Create an OpenAI API client (that's edge friendly!)
@@ -6,12 +7,9 @@ const openai = new OpenAI({
 });
 
 // Set the runtime to edge for best performance
-export const config = {
-  runtime: "edge",
-};
 export const runtime = "experimental-edge";
 
-export default async function handler(request: Request) {
+export const POST: APIRoute = async function ({ request }) {
   const { correct, incorrect, missed } = await request.json();
   const violinStrings = [];
 
@@ -46,11 +44,11 @@ export default async function handler(request: Request) {
     }
   }
   const percentage = Math.round((correct / (correct + incorrect)) * 100);
-  const prompt = `Write a short, simple positive message giving feedback based on a quizScore of ${percentage}.
+  const prompt = `Write a short, simple positive message giving feedback based on a quizScore of ${percentage}%.
 It should be more positive the higher the score. No need to thank the user. Then tell the user they need to practice more on the following:
 Strings: ${violinStrings}, Patterns: ${patterns}. Use a phrase like 'You need to work more on the [string name] and [other string] strings.'
 If there are no strings provided, skip that part. If there are no patterns provided, skip that part. A perfect score does not require a practice recommendation.
-Write at most 4 short sentences.
+Write at most 3 short sentences.
 `;
 
   const response = await openai.completions.create({
@@ -61,5 +59,13 @@ Write at most 4 short sentences.
     prompt,
   });
 
-  return response.choices[0]?.text;
-}
+  console.log(response.choices[0]?.text.replace("\n", "").replace('"', ""));
+  return new Response(
+    response.choices[0]?.text.replace("\n", "").replace('"', ""),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+};
