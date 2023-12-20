@@ -11,10 +11,11 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@astrojs/check": "^0.3.3",
     "@astrojs/preact": "^3.0.1",
     "@astrojs/sitemap": "^3.0.0",
-    "@astrojs/tailwind": "^5.0.2",
-    "@astrojs/vercel": "^5.2.0",
+    "@astrojs/tailwind": "^5.0.4",
+    "@astrojs/vercel": "^6.1.0",
     "@formkit/auto-animate": "^0.8.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
@@ -25,7 +26,7 @@
     "@vercel/og": "^0.5.20",
     "abcjs": "^6.2.2",
     "ai": "^2.2.24",
-    "astro": "^3.5.0",
+    "astro": "^4.0.7",
     "clsx": "^2.0.0",
     "nanostores": "^0.9.3",
     "openai": "^4.19.0",
@@ -34,7 +35,8 @@
     "react-dom": "npm:@preact/compat@latest",
     "sitemap": "^7.1.1",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.4",
+    "typescript": "^5.3.3"
   },
   "overrides": {
     "react": "npm:@preact/compat@latest",

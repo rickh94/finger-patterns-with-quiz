@@ -7,29 +7,31 @@ import type {
   PatternPosition,
 } from "../common";
 import RadioBox from "../../quiz/components/RadioBox";
-import { cn } from "~/util";
+// import { cn } from "~/util";
 // TODO: replace with tags
 
+/*
 enum FormMode {
   Manual = "MANUAL",
   ByKey = "BY_KEY",
 }
+*/
 
 export type ExerciseFormProps = {
   save: (exercise: SingleExerciseConfig) => void;
 };
 export default function ExerciseForm({ save }: ExerciseFormProps) {
-  const [formMode, setFormMode] = useState<FormMode>(FormMode.Manual);
+  // const [formMode, setFormMode] = useState<FormMode>(FormMode.Manual);
 
   return (
-    <div class="flex flex-col px-4">
-      <h2 class="mb-1 text-2xl font-bold">Add Exercises</h2>
-      <p class="mb-4 text-sm">
+    <div className="flex flex-col px-4">
+      <h2 className="mb-1 text-2xl font-bold">Add Exercises</h2>
+      <p className="mb-4 text-sm">
         Using the options below, set up an exercise and add it to the list.
-        Create as many as you want. You can also add all the patterns for a
-        given Key.
+        Create as many as you want.
       </p>
-      <div class="col-span-2 flex items-center justify-center pb-2">
+      {/*
+      <div className="col-span-2 flex items-center justify-center pb-2">
         <div>
           <div className="border-b border-gray-200">
             <nav className="-mb-px flex gap-x-4" aria-label="Tabs">
@@ -63,6 +65,8 @@ export default function ExerciseForm({ save }: ExerciseFormProps) {
       </div>
       {formMode === FormMode.Manual && <ManualForm save={save} />}
       {formMode === FormMode.ByKey && <KeyForm save={save} />}
+      */}
+      <ManualForm save={save} />
     </div>
   );
 }
@@ -75,7 +79,7 @@ function ManualForm({
   const [violinString, setViolinString] = useState<ViolinString>("A");
   const [pattern, setPattern] = useState<PatternId>("oneTwo");
   const [position, setPosition] = useState<PatternPosition>("normal");
-  const [numOfMeasures, setNumOfMeasures] = useState<number>(4);
+  const [numOfMeasures, setNumOfMeasures] = useState<number>(8);
   const [includeOpen, setIncludeOpen] = useState<boolean>(true);
 
   function clear() {
@@ -286,7 +290,7 @@ function ManualForm({
 
 function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
   const [selectedScale, setSelectedScale] = useState<Scale | null>(null);
-  const [numOfMeasures, setNumOfMeasures] = useState<number>(4);
+  const [numOfMeasures, setNumOfMeasures] = useState<number>(8);
   const [includeOpen, setIncludeOpen] = useState<boolean>(true);
 
   function clear() {
@@ -361,7 +365,7 @@ function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
             />
           ),
       )}
-      {scales.map(
+      {/*scales.map(
         (scale: Scale) =>
           scale.mode == "minor" && (
             <RadioBox
@@ -376,7 +380,7 @@ function KeyForm({ save }: { save: (exercise: SingleExerciseConfig) => void }) {
               setChecked={() => setSelectedScale(scale)}
             />
           ),
-      )}
+      )*/}
       <div class="col-span-full flex flex-col gap-4 sm:flex-row lg:flex-col">
         <div>
           <label
