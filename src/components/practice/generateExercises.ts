@@ -165,14 +165,13 @@ export function generateExercise(exerciseConfig: SingleExerciseConfig): string {
 K: Cmaj
 `;
   let lastNoteIdx = -1;
-  let lastLastNoteIdx = -1;
+  // let lastLastNoteIdx = -1;
   for (let i = 0; i < exerciseConfig.numOfMeasures * 4; i++) {
     // This will prevent the same note from being selected more than twice in a row.
     let randomIndex = Math.floor(Math.random() * availableNotes.length);
-    while (lastNoteIdx === lastLastNoteIdx && randomIndex === lastNoteIdx) {
+    while (randomIndex === lastNoteIdx) {
       randomIndex = Math.floor(Math.random() * availableNotes.length);
     }
-    lastLastNoteIdx = lastNoteIdx;
     lastNoteIdx = randomIndex;
     if (i !== 0 && i % 4 === 0) {
       exerciseNotes += " | ";
@@ -188,7 +187,7 @@ export default function generateExercises(
   exerciseConfigs: SingleExerciseConfig[],
 ): string[] {
   const exercises = [];
-  for (let config of exerciseConfigs) {
+  for (const config of exerciseConfigs) {
     exercises.push(generateExercise(config));
   }
   return exercises;

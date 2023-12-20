@@ -101,6 +101,9 @@ export default function PracticeSetup({
           {/*
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
           <ul className="my-2 flex flex-col gap-2" ref={parent}>
+            {exerciseConfigs.length === 0 && (
+              <p>Use the form to create some exercises</p>
+            )}
             {exerciseConfigs.map(
               (exercise) =>
                 exercise?.id !== undefined && (
@@ -110,21 +113,21 @@ export default function PracticeSetup({
                   >
                     <div className="flex min-w-0 gap-x-4">
                       <div className="min-w-0 flex-auto">
-                        <p className="wrap-balance italic leading-6 text-gray-900">
-                          Practice the{" "}
-                          <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
+                        <p className="wrap-balance leading-6 text-gray-900">
+                          I will practice the{" "}
+                          <strong class="whitespace-nowrap font-sans font-bold not-italic text-fuchsia-700">
                             {patterns.normal[exercise.pattern]?.name}
                           </strong>{" "}
                           on the{" "}
-                          <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
+                          <strong class="whitespace-nowrap font-sans font-bold not-italic text-fuchsia-700">
                             {exercise.violinString} String
                           </strong>{" "}
-                          in the{" "}
-                          <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
-                            {exercise.position} position
+                          with a{" "}
+                          <strong class="whitespace-nowrap font-sans font-bold not-italic text-fuchsia-700">
+                            {exercise.position} first finger
                           </strong>{" "}
                           for{" "}
-                          <strong class="wrap-nowrap font-bold not-italic text-fuchsia-700">
+                          <strong class="whitespace-nowrap font-sans font-bold not-italic text-fuchsia-700">
                             {exercise.numOfMeasures} measures
                           </strong>
                         </p>

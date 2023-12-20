@@ -17,6 +17,8 @@ enum FormMode {
 }
 */
 
+// TODO: redo as sentence type form with select elements instead of radio
+
 export type ExerciseFormProps = {
   save: (exercise: SingleExerciseConfig) => void;
 };
@@ -28,7 +30,6 @@ export default function ExerciseForm({ save }: ExerciseFormProps) {
       <h2 className="mb-1 text-2xl font-bold">Add Exercises</h2>
       <p className="mb-4 text-sm">
         Using the options below, set up an exercise and add it to the list.
-        Create as many as you want.
       </p>
       {/*
       <div className="col-span-2 flex items-center justify-center pb-2">
@@ -77,7 +78,7 @@ function ManualForm({
   save: (exercise: SingleExerciseConfig) => void;
 }) {
   const [violinString, setViolinString] = useState<ViolinString>("A");
-  const [pattern, setPattern] = useState<PatternId>("oneTwo");
+  const [pattern, setPattern] = useState<PatternId>("twoThree");
   const [position, setPosition] = useState<PatternPosition>("normal");
   const [numOfMeasures, setNumOfMeasures] = useState<number>(8);
   const [includeOpen, setIncludeOpen] = useState<boolean>(true);
@@ -192,7 +193,7 @@ function ManualForm({
         </fieldset>
         <fieldset>
           <legend className="text-xl font-bold leading-6 text-gray-900">
-            Finger Pattern Position
+            First Finger Position
           </legend>
           <div class="mt-2 grid grid-cols-2 gap-2 text-center">
             <RadioBox
