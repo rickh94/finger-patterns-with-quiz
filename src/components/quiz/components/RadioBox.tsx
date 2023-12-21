@@ -20,7 +20,7 @@ export default function RadioBox({
   return (
     <label
       htmlFor={id}
-      className={`relative flex cursor-pointer items-center justify-center rounded-lg border bg-white p-3  shadow-sm focus:outline-none${
+      className={`relative flex cursor-pointer items-center justify-center rounded-lg border bg-white p-3  shadow-sm focus:outline-none ${
         checked
           ? " border-fuchsia-700 ring-2 ring-fuchsia-700"
           : " border-pink-100"

@@ -90,13 +90,13 @@ export default function PracticeSetup({
   }, [exerciseConfigs]);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const [parent] = useAutoAnimate();
+  const [parent] = useAutoAnimate<HTMLUListElement>();
 
   return (
     <>
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div class="flex flex-col gap-4 sm:mx-auto sm:max-w-4xl">
         <ExerciseForm save={addExerciseConfig} />
-        <div class="min-h-[32rem] md:col-span-2">
+        <div class="min-h-[32rem] pb-12 md:col-span-2">
           <h2 className="text-2xl font-bold">Exercises</h2>
           {/*
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
@@ -145,13 +145,13 @@ export default function PracticeSetup({
             )}
           </ul>
           {exerciseConfigs.length !== 0 && (
-            <div class="mt-4 flex w-full justify-end space-x-2">
+            <div class="mt-4 flex w-full flex-row-reverse flex-wrap justify-start gap-2">
               <button
                 type="button"
-                onClick={clear}
-                className="rounded-md bg-rose-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+                onClick={startPracticing}
+                className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
               >
-                Delete All Exercises
+                Start Practicing
               </button>
               <button
                 type="button"
@@ -162,36 +162,36 @@ export default function PracticeSetup({
               </button>
               <button
                 type="button"
-                onClick={startPracticing}
-                className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+                onClick={clear}
+                className="rounded-md bg-rose-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
               >
-                Start Practicing
+                Delete All Exercises
+              </button>
+            </div>
+          )}
+          {link && (
+            <div className="mt-4 flex w-full flex-wrap items-center justify-center gap-2">
+              <label htmlFor="share-link-input" className="flex-grow-0">
+                Shareable Link:
+              </label>
+              <input
+                ref={shareLinkRef}
+                readOnly={true}
+                type="text"
+                value={link}
+                className="flex-grow rounded border border-gray-300 bg-white p-2"
+              />
+              <button
+                type="button"
+                onClick={copyLink}
+                className="w-[8rem] rounded-md bg-sky-500 px-3 py-2 font-bold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+                ref={copyButtonRef}
+              >
+                Copy Link
               </button>
             </div>
           )}
         </div>
-        {link && (
-          <div className="mt-4 flex w-full items-center justify-center gap-x-2">
-            <label htmlFor="share-link-input" className="flex-grow-0">
-              Shareable Link:
-            </label>
-            <input
-              ref={shareLinkRef}
-              readOnly={true}
-              type="text"
-              value={link}
-              className="flex-grow rounded border border-gray-300 bg-white p-2"
-            />
-            <button
-              type="button"
-              onClick={copyLink}
-              className="w-[8rem] rounded-md bg-sky-500 px-3 py-2 font-bold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-              ref={copyButtonRef}
-            >
-              Copy Link
-            </button>
-          </div>
-        )}
       </div>
     </>
   );

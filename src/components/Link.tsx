@@ -14,7 +14,7 @@ export default function Link({
   return (
     <a
       href={href}
-      className={`rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-600 focus:ring-offset-2 focus:ring-offset-white  ${className}`}
+      className={`rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white  ${className}`}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer noopener" : undefined}
     >

@@ -43,6 +43,9 @@ export default function Quiz() {
   }
 
   function clear() {
+    if (window.location.search) {
+      window.history.pushState({}, document.title, window.location.pathname);
+    }
     setExerciseConfigs([]);
     setExercises([]);
   }

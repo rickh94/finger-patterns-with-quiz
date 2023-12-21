@@ -50,29 +50,30 @@ export default function PracticeDisplay({
     <>
       <h2 className="text-lg leading-6 text-gray-900">
         Practicing the{" "}
-        <em class="font-bold italic text-fuchsia-700">
+        <strong class="font-sans font-bold text-fuchsia-700">
           {patterns.normal[exerciseConfig.pattern]?.name}
-        </em>{" "}
+        </strong>{" "}
         on the{" "}
-        <em class="font-bold italic text-fuchsia-700">
+        <strong class="font-sans font-bold text-fuchsia-700">
           {exerciseConfig.violinString} String
-        </em>{" "}
+        </strong>{" "}
         in the{" "}
-        <em class="font-bold italic text-fuchsia-700">
+        <strong class="font-sans font-bold text-fuchsia-700">
           {exerciseConfig.position} position
-        </em>{" "}
+        </strong>{" "}
         for {exerciseConfig.numOfMeasures} measures
       </h2>
-      <FingerDisplay
-        baseId={`exercise-${exerciseConfig.id}`}
-        radius={2}
-        widths={
-          patterns[exerciseConfig.position][exerciseConfig.pattern]?.widths ?? [
-            4, 4, 4, 4,
-          ]
-        }
-        disabled={true}
-      />
+      <div className="flex w-full items-center justify-center">
+        <FingerDisplay
+          baseId={`exercise-${exerciseConfig.id}`}
+          radius={2}
+          widths={
+            patterns[exerciseConfig.position][exerciseConfig.pattern]
+              ?.widths ?? [4, 4, 4, 4]
+          }
+          disabled={true}
+        />
+      </div>
       <NotesDisplay
         baseId={`exercise-${
           exerciseConfigs[currentExerciseIdx]?.id ?? genRandomId()
