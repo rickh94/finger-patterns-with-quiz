@@ -90,7 +90,7 @@ export default function PatternInfo() {
                   </div>
                   <button
                     type="button"
-                    class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus:ring-2 focus:ring-rose-500"
+                    class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus-visible:ring-2 focus-visible:ring-rose-500"
                     onClick={() => {
                       moreInfoOpen.set(false);
                       if (window.location.search) {

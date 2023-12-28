@@ -56,7 +56,7 @@ export default function ScalePicker() {
                 <div class="relative z-50 flex w-full items-center justify-between">
                   <div class="text-2xl font-bold">Scales</div>
                   <button
-                    class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus:ring-2 focus:ring-rose-500"
+                    class="rounded border-2 border-white hover:text-rose-500 focus:text-rose-500 focus-visible:ring-2 focus-visible:ring-rose-500"
                     onClick={() => scaleMenuOpen.set(false)}
                   >
                     <span class="sr-only">Close Navigation</span>
@@ -73,7 +73,7 @@ export default function ScalePicker() {
                     <select
                       id="tabs"
                       name="tabs"
-                      className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-fuchsia-500 focus:outline-none focus:ring-fuchsia-500 sm:text-sm"
+                      className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-fuchsia-500 focus:outline-none focus:ring-fuchsia-500 focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-white sm:text-sm"
                       defaultValue={currentTab.id}
                     >
                       {TABS.map((tab) => (
@@ -98,7 +98,7 @@ export default function ScalePicker() {
                               currentTab.id === tab.id
                                 ? "border-fuchsia-500 text-fuchsia-600"
                                 : "border-transparent text-black hover:border-fuchsia-300 hover:text-fuchsia-500",
-                              "whitespace-nowrap border-b-2 px-1 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-offset-white",
+                              "whitespace-nowrap border-b-2 px-1 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500 focus-visible:ring-offset-1 focus-visible:ring-offset-white",
                             )}
                             aria-current={
                               currentTab.id === tab.id ? "page" : undefined
