@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* libre-baskerville-regular - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Libre Baskerville";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/libre-baskerville-v14-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+
+  /* libre-baskerville-italic - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Libre Baskerville";
+    font-style: italic;
+    font-weight: 400;
+    src: url("/fonts/libre-baskerville-v14-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+
+  /* libre-baskerville-700 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Libre Baskerville";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/libre-baskerville-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+
+  body {
+    background-color: rgba(232, 0, 255, 0.02);
+  }
+  * {
+    font-family: "Libre Baskerville", serif;
+  }
+}
+
+@layer components {
+  .line {
+    fill: none;
+    stroke: #000000;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-opacity: 0.52118641;
+    stroke-miterlimit: 4;
+    stroke-dasharray: none;
+  }
+
+  .stroke-default {
+    stroke-width: 0.26458333;
+  }
+
+  .svg-text {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 5px;
+    line-height: 1.25;
+    font-family: "Libre Baskerville", serif;
+    letter-spacing: 0;
+    word-spacing: 0;
+    fill: #000000;
+    fill-opacity: 1;
+    stroke: none;
+  }
+
+  .finger,
+  .number {
+    cursor: pointer;
+  }
+
+  .finger-active {
+    fill: #ae00bf;
+  }
+
+  .print-mode .finger-active {
+    fill: #000000;
+  }
+
+  .print-mode .finger,
+  .print-mode .number {
+    cursor: default;
+  }
+
+  .raised {
+    background-color: white;
+  }
+
+  .notes {
+    cursor: pointer;
+  }
+
+  .print-mode .notes {
+    cursor: default;
+  }
+
+  .abcjs-note {
+    fill: #000000;
+    cursor: pointer;
+  }
+
+  .abcjs-staff {
+    fill: #000000;
+  }
+
+  .abcjs-note_selected {
+    fill: #ae00bf;
+  }
+
+  .print-mode .abcjs-note_selected {
+    fill: #000000;
+  }
+
+  .raised {
+    background-color: white;
+  }
+
+  .overlay {
+    backdrop-filter: blur(5px);
+  }
+
+  .wrap-balance {
+    text-wrap: balance;
+  }
+
+  .wrap-nowrap {
+    text-wrap: nowrap;
+  }
+
+  .btn-sm {
+    @apply flex items-center gap-1 rounded-md px-2.5 py-1.5 text-lg font-bold tracking-wide shadow-sm transition-all duration-200;
+  }
+
+  .btn {
+    @apply flex items-center gap-1 rounded-md px-3 py-2 text-lg font-bold tracking-wide shadow-sm transition-all duration-200;
+  }
+
+  .btn-lg {
+    @apply flex items-center gap-2 rounded-md px-5 py-3 text-lg font-bold tracking-wide shadow-sm transition-all duration-200;
+  }
+
+  .btn:focus-visible,
+  .btn:has(:focus-visible),
+  .btn-sm:focus-visible,
+  .btn-sm:has(:focus-visible),
+  .btn-lg:focus-visible,
+  .btn-lg:has(:focus-visible) {
+    @apply outline outline-2 outline-offset-2 outline-fuchsia-600;
+  }
+}

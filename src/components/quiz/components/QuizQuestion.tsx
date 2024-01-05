@@ -7,6 +7,7 @@ import {
 import patterns from "../../../patterns";
 import FingerDisplay from "../../FingerDisplay";
 import NotesDisplay from "../../NotesDisplay";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 type QuizQuestionProps = {
   question: QuestionInfo;
@@ -65,7 +66,7 @@ export default function QuizQuestion({
 
   function makeNotes() {
     if (quizSettings.inOrder) {
-      return `K: Cmaj 
+      return `K: Cmaj
 L: 1/4
 ${question.notes} |]`;
     } else {
@@ -126,7 +127,7 @@ ${notes.join(" ")} |]`;
           })}
           <button
             type="button"
-            className={`rounded px-4 py-2 text-2xl font-semibold text-white ${
+            className={`btn-lg justify-center text-white ${
               canAdvance
                 ? " pointer-events-auto bg-fuchsia-600 shadow-lg hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
                 : " pointer-events-none bg-gray-600"
@@ -135,6 +136,7 @@ ${notes.join(" ")} |]`;
             onClick={advanceQuestion}
           >
             Next Question
+            <ChevronRightIcon className="-mr-2 size-6" />
           </button>
         </div>
       </div>

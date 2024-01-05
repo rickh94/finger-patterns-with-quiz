@@ -6,6 +6,8 @@ import {
   type QuestionInfo,
 } from "../common";
 import generateQuiz from "../generateQuiz";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { CogIcon } from "@heroicons/react/24/solid";
 // TODO: make the loading feedback a little prettier, maybe its own component
 
 type QuizResultsProps = {
@@ -92,16 +94,18 @@ export default function QuizResults({
         <div class="flex gap-x-2">
           <button
             type="button"
-            class="rounded-lg border border-pink-100 bg-fuchsia-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+            class="btn bg-fuchsia-600 text-white hover:bg-fuchsia-500"
             onClick={() => newQuiz()}
           >
+            <ArrowPathIcon className="-ml-1 size-5" />
             New Quiz
           </button>
           <button
             type="button"
-            class="rounded-lg border border-pink-100 bg-amber-600 px-4 py-2 font-bold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            class="btn bg-amber-600 text-white hover:bg-amber-500"
             onClick={() => setMode(QuizMode.Setup)}
           >
+            <CogIcon className="-ml-1 size-5" />
             Change Quiz Settings
           </button>
         </div>

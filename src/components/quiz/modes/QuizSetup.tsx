@@ -8,6 +8,7 @@ import {
 import generateQuiz from "../generateQuiz.ts";
 import ListCheckBox from "../components/ListCheckBox.tsx";
 import RadioBox from "../components/RadioBox.tsx";
+import { ListBulletIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 // TODO: fix num of questions load
 type QuizSetupProps = {
@@ -354,14 +355,16 @@ export default function QuizSetup({
         <button
           type="button"
           onClick={() => setQuizSettings(quizDefaults)}
-          className="rounded-md bg-rose-600 px-5 py-3 text-lg font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+          className="btn bg-rose-600 text-white hover:bg-rose-500"
         >
+          <XMarkIcon className="-ml-1 size-5" />
           Reset to Default
         </button>
         <button
           type="submit"
-          className="rounded-md bg-fuchsia-600 px-5 py-3 text-lg font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+          className="btn bg-fuchsia-600 text-white hover:bg-fuchsia-500"
         >
+          <ListBulletIcon className="-ml-1 size-5" />
           Start Quiz
         </button>
       </div>

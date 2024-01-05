@@ -1,5 +1,7 @@
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { QuizMode, type QuizSettings, type QuestionInfo } from "../common.ts";
 import generateQuiz from "../generateQuiz.ts";
+import { CogIcon, ListBulletIcon } from "@heroicons/react/24/solid";
 
 type QuizSplashProps = {
   setMode: (mode: QuizMode) => void;
@@ -26,19 +28,21 @@ export default function QuizSplash({
         Select below to start taking the quiz immediately with the default
         settings or customize the length and question difficulty.
       </p>
-      <div class="mb-4 flex flex-col gap-6 sm:flex-row">
+      <div class="mb-4 flex flex-col gap-6 sm:flex-row-reverse">
         <button
           type="button"
           onClick={() => startTaking()}
-          className="flex-1 rounded-md bg-emerald-600 px-5 py-3 text-lg font-bold tracking-wide text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+          className="btn-lg flex-1 justify-center bg-emerald-600 text-white hover:bg-emerald-500"
         >
           Start Now
+          <ListBulletIcon className="-mr-1 size-6" />
         </button>
         <button
           type="button"
           onClick={() => setMode(QuizMode.Setup)}
-          className="flex-1 rounded-md bg-fuchsia-600 px-5 py-3 text-lg font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+          className="btn-lg flex-1 justify-center bg-fuchsia-600 text-white hover:bg-fuchsia-500"
         >
+          <CogIcon className="-ml-1 size-6" />
           Customize
         </button>
       </div>

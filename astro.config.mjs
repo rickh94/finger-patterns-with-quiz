@@ -10,7 +10,7 @@ export default defineConfig({
   trailingSlash: "never",
   site: "https://violinfingerpatterns.com",
   integrations: [
-    tailwind(),
+    tailwind({ applyBaseStyles: false }),
     preact({ compat: true }),
     sitemap({
       filter: (page) =>

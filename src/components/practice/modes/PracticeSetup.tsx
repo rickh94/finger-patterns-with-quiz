@@ -8,6 +8,12 @@ import {
   generateExerciseConfigsFromQuery,
 } from "../generateExercises";
 import { useAutoAnimate } from "@formkit/auto-animate/preact";
+import {
+  DocumentDuplicateIcon,
+  PlayCircleIcon,
+  ShareIcon,
+  TrashIcon,
+} from "@heroicons/react/24/solid";
 
 // TODO: add exercise added pop up with jump link arrow
 // TODO: add transition between tabs
@@ -29,7 +35,7 @@ export default function PracticeSetup({
 }: PracticeSetupProps) {
   const [link, setLink] = useState("");
   const shareLinkRef = useRef<HTMLInputElement>(null);
-  const copyButtonRef = useRef<HTMLButtonElement>(null);
+  const copyButtonContentRef = useRef<HTMLSpanElement>(null);
 
   function addExerciseConfig(exercise: SingleExerciseConfig) {
     exercise.id = Math.floor(Math.random() * 1000000);
@@ -60,17 +66,17 @@ export default function PracticeSetup({
     async function () {
       if (link) {
         await navigator.clipboard.writeText(link);
-        if (copyButtonRef.current) {
-          copyButtonRef.current.innerText = "Copied!";
+        if (copyButtonContentRef.current) {
+          copyButtonContentRef.current.innerText = "Copied!";
           setTimeout(() => {
-            if (copyButtonRef.current) {
-              copyButtonRef.current.innerText = "Copy Link";
+            if (copyButtonContentRef.current) {
+              copyButtonContentRef.current.innerText = "Copy Link";
             }
           }, 1000);
         }
       }
     },
-    [copyButtonRef.current, link],
+    [copyButtonContentRef.current, link],
   );
 
   useEffect(() => {
@@ -136,9 +142,10 @@ export default function PracticeSetup({
                     <button
                       type="button"
                       onClick={() => deleteExerciseConfig(exercise.id)}
-                      className="rounded-md bg-rose-600 px-2.5 py-1.5 text-sm font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+                      className="btn-sm bg-rose-600  text-white hover:bg-rose-500"
                     >
                       Delete
+                      <TrashIcon className="-mr-1 size-4" />
                     </button>
                   </li>
                 ),
@@ -149,22 +156,25 @@ export default function PracticeSetup({
               <button
                 type="button"
                 onClick={startPracticing}
-                className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+                className="btn bg-fuchsia-600 text-white hover:bg-fuchsia-500"
               >
+                <PlayCircleIcon className="-ml-1 size-5" />
                 Start Practicing
               </button>
               <button
                 type="button"
                 onClick={share}
-                className="rounded-md bg-sky-500 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+                className="btn bg-sky-500 text-white hover:bg-sky-400"
               >
+                <ShareIcon className="-ml-1 size-5" />
                 Share
               </button>
               <button
                 type="button"
                 onClick={clear}
-                className="rounded-md bg-rose-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+                className="btn btn bg-rose-600 text-white hover:bg-rose-500"
               >
+                <TrashIcon className="-ml-1 size-5" />
                 Delete All Exercises
               </button>
             </div>
@@ -184,10 +194,10 @@ export default function PracticeSetup({
               <button
                 type="button"
                 onClick={copyLink}
-                className="w-[8rem] rounded-md bg-sky-500 px-3 py-2 font-bold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-                ref={copyButtonRef}
+                className="btn w-[9rem] bg-sky-500 text-white"
               >
-                Copy Link
+                <span ref={copyButtonContentRef}>Copy Link</span>
+                <DocumentDuplicateIcon className="-mr-1 size-5" />
               </button>
             </div>
           )}

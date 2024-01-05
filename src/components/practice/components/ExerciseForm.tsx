@@ -1,11 +1,11 @@
-import { useRef, useState } from "preact/hooks";
-import scales, { type Scale } from "../../../scales";
+import { useRef } from "preact/hooks";
 import type {
   SingleExerciseConfig,
   ViolinString,
   PatternId,
   PatternPosition,
 } from "../common";
+import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 // import { cn } from "~/util";
 // TODO: replace with tags
 
@@ -241,14 +241,16 @@ function ManualForm({
       <div class="mt-4 flex w-full flex-row-reverse justify-start gap-x-2">
         <button
           type="submit"
-          className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+          className="btn bg-fuchsia-600 text-white hover:bg-fuchsia-500"
         >
+          <PlusIcon className="-ml-1 size-5" />
           Add Exercise
         </button>
         <button
           type="reset"
-          className="rounded-md bg-rose-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+          className="btn bg-rose-600 text-white hover:bg-rose-500"
         >
+          <XMarkIcon className="-ml-1 size-5" />
           Reset to Default
         </button>
       </div>

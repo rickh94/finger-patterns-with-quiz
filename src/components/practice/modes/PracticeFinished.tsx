@@ -1,5 +1,10 @@
 import type { SingleExerciseConfig } from "../common";
 import patterns from "../../../patterns";
+import {
+  ArrowPathIcon,
+  CogIcon,
+  HandRaisedIcon,
+} from "@heroicons/react/24/solid";
 
 type PracticeFinishedProps = {
   restart: () => void;
@@ -21,26 +26,29 @@ export default function PracticeFinished({
         below to practice the same exercises again, create new exercises for the
         same set of patterns, or choose new patterns to practice.
       </p>
-      <div class="flex w-full flex-col gap-2  sm:flex-row">
+      <div class="flex w-full flex-col gap-2 sm:flex-row sm:justify-center">
         <button
           type="button"
           onClick={restart}
-          className="rounded-md bg-emerald-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+          className="btn bg-emerald-600 text-white hover:bg-emerald-500"
         >
+          <ArrowPathIcon className="-ml-1 size-5" />
           Same Exercises
         </button>
         <button
           type="button"
           onClick={regenerate}
-          className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+          className="btn bg-fuchsia-600 text-white hover:bg-fuchsia-500"
         >
+          <HandRaisedIcon className="-ml-1 size-5" />
           Same Patterns
         </button>
         <button
           type="button"
           onClick={reconfigure}
-          className="rounded-md bg-amber-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+          className="btn bg-amber-600 text-white hover:bg-amber-500"
         >
+          <CogIcon className="-ml-1 size-5" />
           Pick New Patterns
         </button>
       </div>

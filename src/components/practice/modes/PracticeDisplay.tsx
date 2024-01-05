@@ -3,6 +3,12 @@ import NotesDisplay from "../../NotesDisplay";
 import FingerDisplay from "../../FingerDisplay";
 import type { SingleExerciseConfig } from "../common";
 import patterns from "../../../patterns";
+import {
+  CheckIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CogIcon,
+} from "@heroicons/react/24/solid";
 
 // TODO: display sevcik rhythm patterns
 
@@ -89,21 +95,23 @@ export default function PracticeDisplay({
         responsive="resize"
         staffwidth={720}
       />
-      <div class="mt-4 flex w-full justify-between gap-x-2">
+      <div class="mt-4 flex w-full items-center justify-between gap-x-2">
         {hasPrevExercise() ? (
           <button
             type="button"
             onClick={() => prevExercise()}
-            className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+            className="btn bg-fuchsia-600 text-white hover:bg-fuchsia-500"
           >
+            <ChevronLeftIcon class="-ml-1 size-5" />
             Previous
           </button>
         ) : (
           <button
             type="button"
             disabled={true}
-            className="rounded-md bg-gray-600 px-3 py-2 font-bold tracking-wide text-white"
+            className="btn bg-gray-600 text-white"
           >
+            <ChevronLeftIcon className="-ml-1 size-5" />
             Previous
           </button>
         )}
@@ -111,8 +119,9 @@ export default function PracticeDisplay({
           <button
             type="button"
             onClick={() => reconfigure()}
-            className="rounded-md bg-amber-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            className="btn bg-amber-600 text-white hover:bg-amber-500"
           >
+            <CogIcon className="-ml-1 size-5" />
             Setup
           </button>
         </div>
@@ -120,17 +129,19 @@ export default function PracticeDisplay({
           <button
             type="button"
             onClick={() => nextExercise()}
-            className="rounded-md bg-fuchsia-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600"
+            className="btn bg-fuchsia-600 text-white hover:bg-fuchsia-500"
           >
             Next
+            <ChevronRightIcon className="-mr-1 size-5" />
           </button>
         ) : (
           <button
             type="button"
             onClick={() => finish()}
-            className="rounded-md bg-emerald-600 px-3 py-2 font-bold tracking-wide text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            className="btn bg-emerald-600 text-white hover:bg-emerald-500"
           >
             Finish
+            <CheckIcon className="-mr-1 size-5" />
           </button>
         )}
       </div>
